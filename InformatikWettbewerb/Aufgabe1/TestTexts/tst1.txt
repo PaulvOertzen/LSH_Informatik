@@ -1,9 +1,3 @@
-Aufgabe 1
-Schreibe ein Programm, das Zara hilft, möglichst
-lange und sinnvolle deutsche Hopsitexte zu erstel-
-len. Überlege dir, was das Programm bieten muss,
-damit Zara besonders gut damit arbeiten kann
-
 Bela und Amira ist im Deutschunterricht oft lang-
 weilig. Daher haben sie sich ein neues Spiel
 ausgedacht: Texthopsen. Sie suchen sich einen Text
@@ -20,14 +14,3 @@ Buchstaben mit einer neuen Sprungweite. Das
 Hopsen wiederholen sie abwechselnd so lange,
 bis sie aus dem Text herausspringen. Wer dies als
 Erstes schafft, hat gewonnen.
-
-
-a => 1
-b => 2
-c => 3
-... 
-z => 26
-ä => 27
-ö => 28
-ü => 29
-ß => 30

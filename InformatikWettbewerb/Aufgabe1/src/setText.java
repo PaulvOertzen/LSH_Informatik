@@ -4,14 +4,17 @@ import java.io.IOException;
 
 public class setText
 {
+    String text;
     public static void main (String[] args) throws IOException
     {
         BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in
         String input;
-
-        while ((input = reder.readLine()) != null)
+        String data;
+        while ((input = reader.readLine()) != null)
         {
-            System.out.println(input);
+            //System.out.println(input);
+            data = data.concat(input);
         } reader.close();
+        text = data;
     }
 }

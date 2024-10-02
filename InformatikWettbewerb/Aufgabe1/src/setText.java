@@ -16,5 +16,7 @@ public class setText
             data = data.concat(input);
         } reader.close();
         text = data;
+        int length = data.length();
+        System.out.println(length);
     }
 }

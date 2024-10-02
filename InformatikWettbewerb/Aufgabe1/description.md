@@ -22,7 +22,6 @@ bis sie aus dem Text herausspringen. Wer dies als
 Erstes schafft, hat gewonnen.
 
 
-
 a => 1
 b => 2
 c => 3

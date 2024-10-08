@@ -1,10 +1,27 @@
 public static class Control {
-    String text;
-    int textLength;
-    private HashMap<Character, Integer> map = new HashMap<>();
+    String text;    // string wich contains given text
+    int textLength;     // int wich gives the length of given text
+    int intersection; // integer wich is set to determine the point of intersection
+    boolean hasIntersection; // boolean wich dieplays weather or not the given text has an intersection
+    private HashMap<Character, Integer> map; // hashmap wich defines character to jump width relations
 
     Control() {
         fillHashMap();
+        map = new HashMap<>();
+    }
+
+    public static void setText(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(args)); // Directory where the .txt file is stored in, should be given at function call
+        String input;
+        String data;
+        while ((input = reader.readLine()) != null) {
+            //System.out.println(input);
+            data = data.concat(input);
+        }
+        reader.close();
+        text = data;
+        int textLength = data.length();
+        System.out.println(length);
     }
 
     public void export() {
@@ -48,18 +65,5 @@ public static class Control {
         map.put('ö', 28);
         map.put('ü', 29);
         map.put('ß', 30);
-    }
-    public static void setText (String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in
-        String input;
-        String data;
-        while ((input = reader.readLine()) != null) {
-            //System.out.println(input);
-            data = data.concat(input);
-        }
-        reader.close();
-        text = data;
-        int textLength = data.length();
-        System.out.println(length);
     }
 }

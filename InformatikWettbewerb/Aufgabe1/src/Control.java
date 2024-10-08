@@ -59,12 +59,5 @@ public static class Control{
         map.put('ö', 28);
         map.put('ü', 29);
         map.put('ß', 30);
-
-        //Talk about this again!!!
-        //The Desc says, that the Hashmap returns 0 by default if Char is not found. But the Hops method must be so programmed
-        //That it wont stay at the same character. If it programmed like this, then following 3 commands are unneccessary.
-        map.put(' ', 1);
-        map.put(',', 1);
-        map.put('.', 1);
     }
 }

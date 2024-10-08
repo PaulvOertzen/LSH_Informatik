@@ -7,7 +7,8 @@ public class Main {
     java.util.Map charMap;
     int intersection;
     boolean noIntersection;
-    main () {
+
+    main() {
         // here the default values are set
     }
 

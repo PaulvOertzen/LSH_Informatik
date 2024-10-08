@@ -1,33 +1,22 @@
-public static class Control{
-    private HashMap<Character, Integer> map = new HashMap<>();
+public static class Control {
     String text;
-    int textLaenge;
-    Control(){
+    int textLength;
+    private HashMap<Character, Integer> map = new HashMap<>();
+
+    Control() {
         fillHashMap();
     }
-    public void export(){
+
+    public void export() {
 
     } // saves 'text's string as .txt file
-    public boolean hasIntersection(){}
-    public int findIntersection(){}
-    public class setText
-    {
-        String text;
-        public static void main (String[] args) throws IOException
-        {
-            BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in
-            String input;
-            String data;
-            while ((input = reader.readLine()) != null)
-            {
-                //System.out.println(input);
-                data = data.concat(input);
-            } reader.close();
-            text = data;
-            int length = data.length();
-            System.out.println(length);
-        }
+
+    public boolean hasIntersection() {
     }
+
+    public int findIntersection() {
+    }
+
     public void fillHashMap() {
         map.put('a', 1);
         map.put('b', 2);
@@ -59,5 +48,18 @@ public static class Control{
         map.put('ö', 28);
         map.put('ü', 29);
         map.put('ß', 30);
+    }
+    public static void setText (String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in
+        String input;
+        String data;
+        while ((input = reader.readLine()) != null) {
+            //System.out.println(input);
+            data = data.concat(input);
+        }
+        reader.close();
+        text = data;
+        int textLength = data.length();
+        System.out.println(length);
     }
 }

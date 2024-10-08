@@ -1,5 +1,5 @@
 public class Text extends Control {
-    public void edit(){
+    public void edit() {
 
     }
 

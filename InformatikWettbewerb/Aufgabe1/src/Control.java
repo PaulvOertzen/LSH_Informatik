@@ -1,4 +1,4 @@
-public static class Control{
+public static class Control {
     String text;    // string wich contains given text
     int textLength;     // int wich gives the length of given text
     int intersection; // integer wich is set to determine the point of intersection
@@ -10,23 +10,7 @@ public static class Control{
         map = new HashMap<>();
         noIntersection = false;
     }
-    //functoin wich is called by main
-    public void Run(){
-        // reads text in 'text' value
 
-        // runns 'the game loop'
-
-        // starts edit
-    }
-    // the game loop
-    public void gameLoop() {
-        // runs until end of text or intersection
-
-        // player 1 moves
-        // player 2 moves
-        // checks for intersection
-
-    }
     public static void setText(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(args)); // Directory where the .txt file is stored in, should be given at function call
         String input;
@@ -39,6 +23,25 @@ public static class Control{
         text = data;
         int textLength = data.length();
         System.out.println(length);
+    }
+
+    //functoin wich is called by main
+    public void Run() {
+        // reads text in 'text' value
+
+        // runns 'the game loop'
+
+        // starts edit
+    }
+
+    // the game loop
+    public void gameLoop() {
+        // runs until end of text or intersection
+
+        // player 1 moves
+        // player 2 moves
+        // checks for intersection
+
     }
 
     public void export() {

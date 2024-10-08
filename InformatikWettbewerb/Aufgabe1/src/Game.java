@@ -1,4 +1,25 @@
 public class Game extends Control {
+    private static int hops(int startLocation, int hopDistance) {
+        boolean reachedDestination = false;
+        int hopTargetIndex = hopDistance + startLocation;
+        int currentIndex = startLocation;
+        while (!reachedDestination) {
+            if (getJump(decapitaliseChar(getChar(currentIndex))) != 0) {
+                currentIndex = currentIndex + 1;
+            }
+            if ((currentIndex == startLocation )|| currentIndex > textLength) {
+                reachedDestination = true;
+
+            }
+        }
+        return currentIndex;
+    }
+
+    private static char getChar(int location) {
+        character = text.charAt(location);
+        return character;
+    }
+
     // takes a start index and follows the given rules to determine the end location
     public int movePlayer(int startLocation) {
         respectiveChar = getChar(startLocation); // gets char at start location
@@ -13,14 +34,6 @@ public class Game extends Control {
         noIntersectoin = false; // indicates that a intersection was found
         intersection = destinationIndex; //  sets intersection index
         return destinationIndex;
-    }
-    private static int hops(int startLocation, int hopDistance) {
-
-    }
-
-    private static char getChar(int location) {
-        character = text.charAt(location);
-        return character;
     }
 
     //getJump*F* because of Function so it does not use a constructor name

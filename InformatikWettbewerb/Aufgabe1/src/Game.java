@@ -1,4 +1,19 @@
 public class Game extends Control {
+    // takes a start index and follows the given rules to determine the end location
+    public int movePlayer(int startLocation) {
+        respectiveChar = getChar(startLocation); // gets char at start location
+        respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with snail case letters
+        jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
+        destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
+        if (destinationIndex >= textLength) { // controlls weather the text has no intersection
+            noIntersection = true;  // sets the noIntersection flag
+            intersection = 0; // sets the intersaction value to 0 to rebuild a save state
+            return textLength;
+        }
+        noIntersectoin = false; // indicates that a intersection was found
+        intersection = destinationIndex; //  sets intersection index
+        return destinationIndex;
+    }
     private static int hops(int startLocation, int hopDistance) {
 
     }

@@ -2,12 +2,13 @@ public static class Control{
     String text;    // string wich contains given text
     int textLength;     // int wich gives the length of given text
     int intersection; // integer wich is set to determine the point of intersection
-    boolean hasIntersection; // boolean wich dieplays weather or not the given text has an intersection
+    boolean noIntersection; // boolean wich dieplays weather or not the given text has an intersection
     private HashMap<Character, Integer> map; // hashmap wich defines character to jump width relations
 
     Control() {
         fillHashMap();
         map = new HashMap<>();
+        noIntersection = false;
     }
     //functoin wich is called by main
     public void Run(){

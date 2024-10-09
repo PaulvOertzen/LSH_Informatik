@@ -1,4 +1,6 @@
-public static class Control {
+public class Control //extends main
+ {
+
     String text;    // string wich contains given text
     int textLength;     // int wich gives the length of given text
     int intersection; // integer wich is set to determine the point of intersection
@@ -14,8 +16,9 @@ public static class Control {
     public static void setText(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
         String input;
-        String data;
-        while ((input = reader.readLine()) != null) {
+        String data = "";
+        while ((input = reader.readLine()) != null)
+        {
             data = data.concat(input);
         }
         reader.close();

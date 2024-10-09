@@ -12,17 +12,14 @@ public static class Control {
     }
 
     public static void setText(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(args)); // Directory where the .txt file is stored in, should be given at function call
+        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
         String input;
         String data;
         while ((input = reader.readLine()) != null) {
-            //System.out.println(input);
             data = data.concat(input);
         }
         reader.close();
-        text = data;
-        int textLength = data.length();
-        System.out.println(length);
+        String text = data;
     }
 
     //functoin wich is called by main

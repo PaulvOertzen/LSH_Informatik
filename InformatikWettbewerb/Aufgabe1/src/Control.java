@@ -1,28 +1,33 @@
-public static class Control {
-    String text;    // string wich contains given text
+import java.util.HashMap;
+
+public class Control {
+    static String textString;    // string wich contains given text
     int textLength;     // int wich gives the length of given text
     int intersection; // integer wich is set to determine the point of intersection
     boolean noIntersection; // boolean wich dieplays weather or not the given text has an intersection
-    private HashMap<Character, Integer> map; // hashmap wich defines character to jump width relations
-
+    HashMap<Character, Integer> map; // hashmap wich defines character to jump width relations
+    Game game;
+    Text text;
     Control() {
         fillHashMap();
         map = new HashMap<>();
         noIntersection = false;
+        game = new Game();
+        text = new Text();
     }
 
-    public static void setText(String[] args) throws IOException {
+    public void setText(String[] args){
         BufferedReader reader = new BufferedReader(new FileReader(args)); // Directory where the .txt file is stored in, should be given at function call
         String input;
         String data;
         while ((input = reader.readLine()) != null) {
-            //System.out.println(input);
+            // System.out.println(input);
             data = data.concat(input);
         }
         reader.close();
-        text = data;
+        textString = data;
         int textLength = data.length();
-        System.out.println(length);
+        // System.out.println(length);
     }
 
     //functoin wich is called by main
@@ -36,6 +41,13 @@ public static class Control {
 
     // the game loop
     public void gameLoop() {
+        boolean run = true;
+        int player1Position = 0;
+        int player2Position = 1;
+        while (run) {
+            player1Position = game.movePlayer(player1Position);
+            player2Position = game.movePlayer(player2Position);
+        }
         // runs until end of text or intersection
 
         // player 1 moves

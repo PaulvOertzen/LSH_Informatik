@@ -28,6 +28,7 @@ public class Game extends Control {
         char respectiveChar = getChar(startLocation); // gets char at start location
         respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with snail case letters
         int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
+        latestHopDistance = jumpWidth;
         int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
         if (destinationIndex >= textLength) { // controlls weather the text has no intersection
             noIntersection = true;  // sets the noIntersection flag

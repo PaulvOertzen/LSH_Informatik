@@ -1,23 +1,30 @@
+import javax.imageio.IIOException;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.io.FileReader;
+import java.io.BufferedReader;
 
 public class Control {
-    String text;    // string wich contains given text
-    int textLength;     // int wich gives the length of given text
-    int intersection; // integer wich is set to determine the point of intersection
-    boolean noIntersection; // boolean wich dieplays weather or not the given text has an intersection
+    public static String textString;    // string wich contains given text
+    public int textLength;     // int wich gives the length of given text
+    public int intersection; // integer wich is set to determine the point of intersection
+    public boolean noIntersection; // boolean wich dieplays weather or not the given text has an intersection
+    public int latestHopDistance;
     HashMap<Character, Integer> map; // hashmap wich defines character to jump width relations
-    Game game;
-    Text text;
+    public Game game;
+    public Text text;
+    public String finalString;
     Control() {
-        fillHashMap();
         map = new HashMap<>();
+        fillHashMap();
         noIntersection = false;
         game = new Game();
         text = new Text();
     }
 
-    public static void setText(String[] args){
-        BufferedReader reader = new BufferedReader(new FileReader(args)); // Directory where the .txt file is stored in, should be given at function call
+    public static void setText(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(Arrays.toString(args))); // Directory where the .txt file is stored in, should be given at function call
         String input;
         String data = "";
         while ((input = reader.readLine()) != null)
@@ -57,12 +64,15 @@ public class Control {
 
     public void export() {
 
+
     } // saves 'text's string as .txt file
 
     public boolean hasIntersection() {
+        return  true;
     }
 
     public int findIntersection() {
+        return  0;
     }
 
     public void fillHashMap() {

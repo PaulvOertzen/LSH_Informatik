@@ -1,7 +1,5 @@
-import java.util.HashMap;
-
-public class Control {
-    static String textString;    // string wich contains given text
+public static class Control {
+    String text;    // string wich contains given text
     int textLength;     // int wich gives the length of given text
     int intersection; // integer wich is set to determine the point of intersection
     boolean noIntersection; // boolean wich dieplays weather or not the given text has an intersection
@@ -16,18 +14,17 @@ public class Control {
         text = new Text();
     }
 
-    public void setText(String[] args){
+    public static void setText(String[] args){
         BufferedReader reader = new BufferedReader(new FileReader(args)); // Directory where the .txt file is stored in, should be given at function call
         String input;
-        String data;
-        while ((input = reader.readLine()) != null) {
-            // System.out.println(input);
+        String data = "";
+        while ((input = reader.readLine()) != null)
+        {
             data = data.concat(input);
         }
         reader.close();
-        textString = data;
+        String textString = data;
         int textLength = data.length();
-        // System.out.println(length);
     }
 
     //functoin wich is called by main

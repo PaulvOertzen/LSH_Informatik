@@ -15,6 +15,9 @@ public class Game extends Control {
         return currentIndex;
     }
 
+    // A acces modiffyer change for "hops" or its variables may be required
+    ----------------------------------------------------------------
+
     private static char getChar(int location) {
         char character = textString.charAt(location);
         return character;

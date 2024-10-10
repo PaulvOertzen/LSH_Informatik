@@ -14,7 +14,6 @@ public class Control {
     public HashMap<Character, Integer> map;        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
-    public String finalString;
 
     Control() {
         map = new HashMap<>();
@@ -94,16 +93,24 @@ public class Control {
 
     public void export() {
 
+        //OutputString from the text class
+        //Use a buffered writer to write to a file
 
-    } // saves 'text's string as .txt file
+    }
 
     public boolean hasIntersection() {
-        return  true;
+        return true;
     }
+
+
+
 
     public int findIntersection() {
         return  0;
     }
+
+
+
 
     public void fillHashMap() {
         map.put('a', 1);

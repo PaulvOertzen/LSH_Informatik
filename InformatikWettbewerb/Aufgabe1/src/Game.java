@@ -1,5 +1,6 @@
 public class Game extends Control {
-    private int hops(int startLocation, int hopDistance) {
+
+    public int hops(int startLocation, int hopDistance) {
         boolean reachedDestination = false;
         int hopTargetIndex = hopDistance + startLocation;
         int currentIndex = startLocation;
@@ -15,8 +16,6 @@ public class Game extends Control {
         return currentIndex;
     }
 
-    // A acces modiffyer change for "hops" or its variables may be required
-    // ----------------------------------------------------------------
 
     private static char getChar(int location) {
         char character = textString.charAt(location);

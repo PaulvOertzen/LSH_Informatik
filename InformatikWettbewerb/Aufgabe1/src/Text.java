@@ -10,19 +10,23 @@ public class Text extends Control
         //if NoIntersection is false, the original .txt file will be updated
 
 
-        int currentIndex = intersection;   //get current index from Game object
-        int HopDistance = latestHopDistance;     //get hop distance from Game object
-        //get noIntersection flag from Control object
+        Control ControlObject = new Control();                  //create new Control object
+        boolean noIntersection = ControlObject.noIntersection;  //get noIntersection flag from Control object
+        String text = textString;                               //get original text from Control object
+
+        int currentIndex = intersection;
+        int HopDistance = latestHopDistance;
 
         char IntersectionChar = '$';                            //set intersection character to '$'
 
         if (!noIntersection)                                    //function for inserting a '$' at the index of the inersection
         {
             int previousIndex = currentIndex - HopDistance;
-            String sb = textString;
-            sb = textString.substring(0, previousIndex) + IntersectionChar + textString.substring(previousIndex + 1);
+            String sb; /*= text;*/
+            sb = text.substring(0, previousIndex) + IntersectionChar + text.substring(previousIndex + 1);
             System.out.println(sb);
-            finalString = sb;
+            String OutputString = sb;
+            //return OutputString;
         }
     }
 }

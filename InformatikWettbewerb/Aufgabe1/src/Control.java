@@ -6,15 +6,16 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 
 public class Control {
-    public static String textString;    // string wich contains given text
-    public int textLength;     // int wich gives the length of given text
-    public int intersection; // integer wich is set to determine the point of intersection
-    public boolean noIntersection; // boolean wich dieplays weather or not the given text has an intersection
+    public static String textString;         // string which contains given text
+    public int textLength;                  // int which gives the length of given text
+    public int intersection;                // integer which is set to determine the point of intersection
+    public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public int latestHopDistance;
-    HashMap<Character, Integer> map; // hashmap wich defines character to jump width relations
+    public HashMap<Character, Integer> map;        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
     public String finalString;
+
     Control() {
         map = new HashMap<>();
         fillHashMap();
@@ -32,9 +33,19 @@ public class Control {
             data = data.concat(input);
         }
         reader.close();
-        String textString = data;
-        int textLength = data.length();
+        textString = data;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     //functoin wich is called by main
     public void Run() {
@@ -44,6 +55,16 @@ public class Control {
 
         // starts edit
     }
+
+
+
+
+
+
+
+
+
+
 
     // the game loop
     public void gameLoop() {
@@ -61,6 +82,15 @@ public class Control {
         // checks for intersection
 
     }
+
+
+
+
+
+
+
+
+
 
     public void export() {
 

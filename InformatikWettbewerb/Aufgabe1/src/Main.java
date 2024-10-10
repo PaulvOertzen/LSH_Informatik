@@ -1,8 +1,6 @@
-// aaaaaahhhmmm
 public class Main {
-    Control control = new Control();
-
-    public static void main(String[] args) {
-        control.Run();
+    public static void main() {
+        // initialises Controll class right?
+        // Doesn't Control.java need to extend main class??? Cloud be wrong idk
     }
 }

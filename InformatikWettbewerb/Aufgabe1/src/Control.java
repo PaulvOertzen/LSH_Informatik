@@ -1,4 +1,6 @@
-public static class Control {
+import java.util.HashMap;
+
+public class Control {
     String text;    // string wich contains given text
     int textLength;     // int wich gives the length of given text
     int intersection; // integer wich is set to determine the point of intersection

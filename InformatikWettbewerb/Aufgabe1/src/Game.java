@@ -16,7 +16,7 @@ public class Game extends Control {
     }
 
     // A acces modiffyer change for "hops" or its variables may be required
-    ----------------------------------------------------------------
+    // ----------------------------------------------------------------
 
     private static char getChar(int location) {
         char character = textString.charAt(location);

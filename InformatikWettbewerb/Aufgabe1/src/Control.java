@@ -1,6 +1,6 @@
-import javax.imageio.IIOException;
+//import javax.imageio.IIOException;
 import java.io.*;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.HashMap;
 
 public class Control {
@@ -12,6 +12,8 @@ public class Control {
     public HashMap<Character, Integer> map;        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
+    int player1Position = 0;
+    int player2Position = 1;
 
 
     Control() {
@@ -22,7 +24,7 @@ public class Control {
         text = new Text();
     }
 
-    public static void setText(String[] args) throws IOException {
+    public static String setText(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
         String input;
         String data = "";
@@ -32,12 +34,8 @@ public class Control {
         }
         reader.close();
         textString = data;
-        int textLength = textString.length();
+        return textString;
     }
-
-
-
-
 
 
 
@@ -48,12 +46,24 @@ public class Control {
 
     //functoin wich is called by main
     public void Run() {
+        gameLoop();
+
         // reads text in 'text' value
-
         // runns 'the game loop'
-
         // starts edit
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -68,20 +78,30 @@ public class Control {
     // the game loop
     public void gameLoop() {
         boolean run = true;
-        int player1Position = 0;
-        int player2Position = 1;
+
         while (run) {
             player1Position = game.movePlayer(player1Position);
             player2Position = game.movePlayer(player2Position);
         }
-        // runs until end of text or intersection
 
         // player 1 moves
         // player 2 moves
-        // checks for intersection
-
+    }
+    public void getPlayerPosition(int player1Position, int player2Position )
+    {
+        this.player1Position = player1Position;
+        this.player2Position= player2Position;
     }
 
+    public int getPlayer1Position()
+    {
+        return player1Position;
+    }
+
+    public int getPlayer2Position()
+        {
+        return player2Position;
+    }
 
 
 
@@ -102,16 +122,15 @@ public class Control {
     }
 
 
-    public boolean hasIntersection() {
-        return true;
+    public boolean hasIntersection()
+    {
+        if (player1Position == player2Position)
+        {
+            noIntersection = true;
+        }
+        return noIntersection;
     }
 
-
-
-
-    public int findIntersection() {
-        return  0;
-    }
 
 
 

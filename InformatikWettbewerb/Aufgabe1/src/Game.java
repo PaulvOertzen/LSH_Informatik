@@ -2,7 +2,7 @@ public class Game extends Control {
 
     public int hops(int startLocation, int hopDistance) {
         boolean reachedDestination = false;
-        int hopTargetIndex = hopDistance + startLocation;
+        //int hopTargetIndex = hopDistance + startLocation;
         int currentIndex = startLocation;
         while (!reachedDestination) {
             if (getJump(decapitaliseChar(getChar(currentIndex))) != 0) {
@@ -21,22 +21,53 @@ public class Game extends Control {
         return character;
     }
 
+
+
+
+
+
+
+
+
     // takes a start index and follows the given rules to determine the end location
+
     public int movePlayer(int startLocation) {
         char respectiveChar = getChar(startLocation); // gets char at start location
         respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with lower case letters
         int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
+        // should not this be the LegthOfJump???
         latestHopDistance = jumpWidth;
         int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
         if (destinationIndex >= textLength) { // controlls weather the text has no intersection
             noIntersection = true;  // sets the noIntersection flag
             intersection = 0; // sets the intersaction value to 0 to rebuild a save state
-            return textLength;
+            return textLength;  //Why do we need to return the length of the text?
         }
         noIntersection = false; // indicates that a intersection was found
         intersection = destinationIndex; //  sets intersection index
         return destinationIndex;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //getJump*F* because of Function so it does not use a constructor name
     public int getJump(char character) {

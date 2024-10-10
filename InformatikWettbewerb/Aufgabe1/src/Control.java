@@ -1,9 +1,7 @@
 import javax.imageio.IIOException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.io.FileReader;
-import java.io.BufferedReader;
 
 public class Control {
     public static String textString;         // string which contains given text
@@ -15,6 +13,7 @@ public class Control {
     public Game game;
     public Text text;
 
+
     Control() {
         map = new HashMap<>();
         fillHashMap();
@@ -24,7 +23,7 @@ public class Control {
     }
 
     public static void setText(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(Arrays.toString(args))); // Directory where the .txt file is stored in, should be given at function call
+        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
         String input;
         String data = "";
         while ((input = reader.readLine()) != null)
@@ -33,6 +32,7 @@ public class Control {
         }
         reader.close();
         textString = data;
+        int textLength = textString.length();
     }
 
 
@@ -91,12 +91,16 @@ public class Control {
 
 
 
-    public void export() {
+    public void export() throws IOException {
 
-        //OutputString from the text class
-        //Use a buffered writer to write to a file
+        Text TextObject = new Text();                    //Creating a new Text object
+        String outputString = TextObject.OutputString;   //getting the output string from Text object
 
+        BufferedWriter writer = new BufferedWriter(new FileWriter(""));  //Cosntructor for a buufered writer
+        writer.write(outputString);  //writes the contence of outputString to the file
+        writer.close();
     }
+
 
     public boolean hasIntersection() {
         return true;

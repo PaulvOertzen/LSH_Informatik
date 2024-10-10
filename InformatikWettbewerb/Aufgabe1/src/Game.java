@@ -10,7 +10,6 @@ public class Game extends Control {
             }
             if ((currentIndex == startLocation )|| currentIndex > textLength) {
                 reachedDestination = true;
-
             }
         }
         return currentIndex;
@@ -25,7 +24,7 @@ public class Game extends Control {
     // takes a start index and follows the given rules to determine the end location
     public int movePlayer(int startLocation) {
         char respectiveChar = getChar(startLocation); // gets char at start location
-        respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with snail case letters
+        respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with lower case letters
         int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
         latestHopDistance = jumpWidth;
         int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
@@ -46,7 +45,7 @@ public class Game extends Control {
         // check weather some character is in the hashmap
         int LengthOfJump;
         if (map.containsKey(character)){
-            //look up character in Hasmap and same value
+            //look up character in Hashmap and same value
             LengthOfJump = map.get(character);
         } else{
             // sets length to 0 to indicate that no character in the hashmap matches the given character

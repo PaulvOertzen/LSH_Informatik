@@ -15,7 +15,6 @@ public class Game extends Control {
         return currentIndex;
     }
 
-
     private static char getChar(int location) {
         char character = textString.charAt(location);
         return character;

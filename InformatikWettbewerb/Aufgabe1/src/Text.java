@@ -17,15 +17,12 @@ public class Text extends Control
         String text = textString;                               //get the original text which needs to be edited
         int previousIndex = intersection;
 
-        int currentIndex = intersection;
-        int HopDistance = latestHopDistance;
 
         char IntersectionChar = '$';
 
         if (!noIntersection)                                    //function for inserting a '$' at the index of the inersection
         {
             sb = text.substring(0, previousIndex) + IntersectionChar + text.substring(previousIndex + 1);
-            System.out.println(sb);
         }
     }
 }

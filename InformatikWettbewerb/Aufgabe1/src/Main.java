@@ -1,6 +1,8 @@
+
 public class Main {
-    static Control control;
+
     public static void main(String[] args){
+        Control control;
         control = new Control();
         control.Run();
     }

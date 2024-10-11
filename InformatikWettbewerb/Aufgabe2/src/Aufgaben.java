@@ -1,5 +1,5 @@
 public class Aufgaben {
-    BoleanOfKeys[] boleanOfKeys;
+    BooleanOfKeys[] boleanOfKeys;
 
     public void convertToBooleanLogic() {
 

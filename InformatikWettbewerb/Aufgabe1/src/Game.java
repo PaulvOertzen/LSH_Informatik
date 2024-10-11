@@ -35,13 +35,12 @@ public class Game extends Control {
         char respectiveChar = getChar(startLocation); // gets char at start location
         respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with lower case letters
         int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
-        // should not this be the LegthOfJump???
         latestHopDistance = jumpWidth;
         int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
         if (destinationIndex >= textLength) { // controlls weather the text has no intersection
             noIntersection = true;  // sets the noIntersection flag
             intersection = 0; // sets the intersaction value to 0 to rebuild a save state
-            return textLength;  //Why do we need to return the length of the text?
+            return textLength;
         }
         noIntersection = false; // indicates that a intersection was found
         intersection = destinationIndex; //  sets intersection index

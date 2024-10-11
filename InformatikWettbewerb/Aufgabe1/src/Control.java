@@ -131,6 +131,16 @@ public class Control {
         return noIntersection;
     }
 
+    public int intersection()
+    {
+        if (!noIntersection)
+        {
+            int instersection = player1Position - latestHopDistance;
+        }
+        return intersection;
+    }
+
+
 
 
 

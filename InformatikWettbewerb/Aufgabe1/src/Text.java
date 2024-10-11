@@ -14,7 +14,8 @@ public class Text extends Control
 
         Control ControlObject = new Control();                  //create new Control object
         boolean noIntersection = ControlObject.noIntersection;  //get noIntersection flag from Control object
-        String text = textString;                               //get original text from Control object
+        String text = textString;                               //get the original text which needs to be edited
+        int previousIndex = intersection;
 
         int currentIndex = intersection;
         int HopDistance = latestHopDistance;
@@ -23,7 +24,6 @@ public class Text extends Control
 
         if (!noIntersection)                                    //function for inserting a '$' at the index of the inersection
         {
-            int previousIndex = currentIndex - HopDistance;
             sb = text.substring(0, previousIndex) + IntersectionChar + text.substring(previousIndex + 1);
             System.out.println(sb);
         }

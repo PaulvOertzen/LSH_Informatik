@@ -14,9 +14,10 @@ public class Control {
     int player2Position = 1;
 
 
-    Control() {
-        //map = new HashMap<>();
+    public void control() throws IOException {
         fillHashMap();
+        setText();
+        Run();
         noIntersection = false;
         game = new Game();
         text = new Text();
@@ -54,10 +55,12 @@ public class Control {
         map.put('ö', 28);
         map.put('ü', 29);
         map.put('ß', 30);
+
+        System.out.println(map);
     }
 
-    public static String setText(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts.txt")); // Directory where the .txt file is stored in, should be given at function call
+    public static String setText() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
         String input;
         String data = "";
         while ((input = reader.readLine()) != null)
@@ -66,7 +69,9 @@ public class Control {
         }
         reader.close();
         textString = data;
+        System.out.println(textString);
         return textString;
+
     }
 
     //functoin wich is called by main

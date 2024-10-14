@@ -6,10 +6,5 @@ public class Main {
 
         Control ControlObject = new Control();
         ControlObject.control();
-
-        //Control control;
-        //control = new Control();
-        //control.Run();
     }
-
 }

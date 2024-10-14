@@ -1,71 +1,7 @@
 public class Game extends Control {
-
-    public int hops(int startLocation, int hopDistance) {
-        boolean reachedDestination = false;
-        //int hopTargetIndex = hopDistance + startLocation;
-        int currentIndex = startLocation;
-        while (!reachedDestination) {
-            if (getJump(decapitaliseChar(getChar(currentIndex))) != 0) {
-                currentIndex = currentIndex + 1;
-            }
-            if ((currentIndex == startLocation )|| currentIndex > textLength) {
-                reachedDestination = true;
-            }
-        }
-        return currentIndex;
+    Game(){
+        System.out.println("game initialised");
     }
-
-    private static char getChar(int location) {
-        char character = textString.charAt(location);
-        return character;
-    }
-
-
-
-
-
-
-
-
-
-    // takes a start index and follows the given rules to determine the end location
-
-    public int movePlayer(int startLocation) {
-        char respectiveChar = getChar(startLocation); // gets char at start location
-        respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with lower case letters
-        int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
-        latestHopDistance = jumpWidth;
-        int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
-        if (destinationIndex >= textLength) { // controlls weather the text has no intersection
-            noIntersection = true;  // sets the noIntersection flag
-            intersection = 0; // sets the intersaction value to 0 to rebuild a save state
-            return textLength;
-        }
-        noIntersection = false; // indicates that a intersection was found
-        intersection = destinationIndex; //  sets intersection index
-        return destinationIndex;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //getJump*F* because of Function so it does not use a constructor name
     public int getJump(char character) {
@@ -83,9 +19,60 @@ public class Game extends Control {
         return LengthOfJump; //return value of HashMap
     }
 
+    public int hops(int startLocation, int hopDistance) {
+        boolean reachedDestination = false;
+        // int hopTargetIndex = hopDistance + startLocation;
+        int currentIndex = startLocation;
+        while (!reachedDestination) {
+            if (getJump(decapitaliseChar(getChar(currentIndex))) != 0) {
+                currentIndex = currentIndex + 1;
+            }
+            if ((currentIndex == startLocation )|| currentIndex > textLength) {
+                reachedDestination = true;
+            }
+        }
+        return currentIndex;
+    }
+
+    private static char getChar(int location) {
+        char character = textString.charAt(location);
+        return character;
+    }
+
     public char decapitaliseChar(char character) {
 
         return Character.toLowerCase(character);
 
+    }
+
+
+    public int getLength(){
+        String str = textString;
+
+        //String text = str.replaceAll("[^a-zA-Z]", "");
+        // Use regular expression to match all non-alphabetic characters and replace with empty string
+        char[] charArray = new char[str.length()];
+        str.getChars(0, str.length(), charArray, 0);
+        System.out.println(charArray.length);
+        return charArray.length;
+    }
+
+    // takes a start index and follows the given rules to determine the end location
+
+    public int movePlayer(int startLocation) {
+        char respectiveChar = getChar(startLocation); // gets char at start location
+        respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with lower case letters
+        int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
+        System.out.println(jumpWidth);
+        latestHopDistance = jumpWidth;
+        int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
+        if (destinationIndex >= textLength) { // controlls weather the text has no intersection
+            noIntersection = true;  // sets the noIntersection flag
+            intersection = 0; // sets the intersaction value to 0 to rebuild a save state
+            return textLength;
+        }
+        noIntersection = false; // indicates that a intersection was found
+        intersection = destinationIndex; //  sets intersection index
+        return destinationIndex;
     }
 }

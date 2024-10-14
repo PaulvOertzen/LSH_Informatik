@@ -15,12 +15,14 @@ public class Control {
 
 
     public void control() throws IOException {
-        fillHashMap();
-        setText();
-        Run();
+
         noIntersection = false;
         game = new Game();
         text = new Text();
+        fillHashMap();
+        setText();
+        Run();
+        export();
     }
 
     public static void fillHashMap() {
@@ -59,17 +61,20 @@ public class Control {
         System.out.println(map);
     }
 
-    public static String setText() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
-        String input;
-        String data = "";
-        while ((input = reader.readLine()) != null)
+    public String setText() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/tst1.txt")); // Directory where the .txt file is stored in, should be given at function call
+        String inputtext;
+        String rawtext = "";
+        while ((inputtext = reader.readLine()) != null)
         {
-            data = data.concat(input);
+            rawtext = rawtext.concat(inputtext);
         }
         reader.close();
-        textString = data;
+        textString = rawtext;
+        textLength = textString.length();
         System.out.println(textString);
+        System.out.println(textLength);
+//        game.getLength();
         return textString;
 
     }
@@ -83,6 +88,12 @@ public class Control {
         // starts edit
     }
 
+
+
+    //-----------------------------------------------------------------------------------------------------------------
+
+
+
     // the game loop
     public void gameLoop() {
         boolean run = true;
@@ -90,15 +101,22 @@ public class Control {
         while (run) {
             player1Position = game.movePlayer(player1Position);
             player2Position = game.movePlayer(player2Position);
+
+            if (hasIntersection())
+            {
+                run = false;
+            }
         }
+        text.edit();
 
         // player 1 moves
         // player 2 moves
     }
-    public void getPlayerPosition(int player1Position, int player2Position )
+
+    public void setPlayerPosition(int player1Position, int player2Position )
     {
         this.player1Position = player1Position;
-        this.player2Position= player2Position;
+        this.player2Position = player2Position;
     }
 
     public int getPlayer1Position()
@@ -111,12 +129,15 @@ public class Control {
         return player2Position;
     }
 
+
+
+
     public void export() throws IOException {
 
         Text TextObject = new Text();                    //Creating a new Text object
         String outputString = TextObject.OutputString;   //getting the output string from Text object
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(""));  //Cosntructor for a buufered writer
+        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/test2.txt"));  //Cosntructor for a bufered writer
         writer.write(outputString);  //writes the contence of outputString to the file
         writer.close();
     }
@@ -127,7 +148,6 @@ public class Control {
         if (player1Position == player2Position)
         {
             noIntersection = false;
-
         } else
         {
             noIntersection = true;
@@ -143,11 +163,4 @@ public class Control {
         }
         return intersection;
     }
-
-
-
-
-
-
-
 }

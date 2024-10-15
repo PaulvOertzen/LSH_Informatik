@@ -10,8 +10,8 @@ public class Control {
     public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
-    int player1Position = 0;
-    int player2Position = 1;
+    int player1Position;
+    int player2Position;
 
 
     public void control() throws IOException {
@@ -22,7 +22,6 @@ public class Control {
         fillHashMap();
         setText();
         Run();
-        export();
     }
 
     public static void fillHashMap() {
@@ -80,12 +79,8 @@ public class Control {
     }
 
     //functoin wich is called by main
-    public void Run() {
+    public void Run() throws IOException {
         gameLoop();
-
-        // reads text in 'text' value
-        // runns 'the game loop'
-        // starts edit
     }
 
 
@@ -95,12 +90,14 @@ public class Control {
 
 
     // the game loop
-    public void gameLoop() {
+    public void gameLoop() throws IOException {
         boolean run = true;
 
         while (run) {
-            player1Position = game.movePlayer(player1Position);
-            player2Position = game.movePlayer(player2Position);
+
+            // text length nicht richtig gesetzt oder nd public etc iwas stimmt da nd
+            player1Position = game.movePlayer(player1Position); //player 1 moves
+            player2Position = game.movePlayer(player2Position); //player 2 moves
 
             if (hasIntersection())
             {
@@ -108,28 +105,7 @@ public class Control {
             }
         }
         text.edit();
-
-        // player 1 moves
-        // player 2 moves
     }
-
-    public void setPlayerPosition(int player1Position, int player2Position )
-    {
-        this.player1Position = player1Position;
-        this.player2Position = player2Position;
-    }
-
-    public int getPlayer1Position()
-    {
-        return player1Position;
-    }
-
-    public int getPlayer2Position()
-    {
-        return player2Position;
-    }
-
-
 
 
     public void export() throws IOException {
@@ -148,6 +124,7 @@ public class Control {
         if (player1Position == player2Position)
         {
             noIntersection = false;
+            intersection();
         } else
         {
             noIntersection = true;
@@ -159,7 +136,7 @@ public class Control {
     {
         if (!noIntersection)
         {
-            int instersection = player1Position - latestHopDistance;
+            intersection = player1Position - latestHopDistance;
         }
         return intersection;
     }

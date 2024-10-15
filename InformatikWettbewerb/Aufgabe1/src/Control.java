@@ -21,6 +21,7 @@ public class Control {
         text = new Text();
         fillHashMap();
         setText();
+        SetTextLength();
         Run();
     }
 
@@ -70,12 +71,12 @@ public class Control {
         }
         reader.close();
         textString = rawtext;
-        textLength = textString.length();
-        System.out.println(textString);
-        System.out.println(textLength);
-//        game.getLength();
         return textString;
+    }
 
+    public int SetTextLength()
+    {
+        return textLength = textString.length();
     }
 
     //functoin wich is called by main

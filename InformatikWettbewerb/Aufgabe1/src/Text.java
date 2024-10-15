@@ -10,10 +10,10 @@ public class Text extends Control
     public void edit() throws IOException {
         Control ControlObject = new Control();
 
-        int previousIndex = intersection ;
+        int previousIndex = intersection;
         char IntersectionChar = '$';
 
-        if (!noIntersection)                                    //function for inserting a '$' at the index of the inersection
+        if (!noIntersection)                             //function for inserting a '$' at the index of the inersection
         {
             sb = textString.substring(0, previousIndex) + IntersectionChar + textString.substring(previousIndex + 1);
             ControlObject.export();

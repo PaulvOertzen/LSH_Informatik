@@ -1,6 +1,6 @@
 public class Game extends Control {
     Game() {
-        System.out.println("game initialised");
+
     }
 
     private static char getChar(int location) {

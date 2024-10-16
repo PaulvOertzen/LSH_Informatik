@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Control {
     public static String textString;         // string which contains given text
-    public int textLength;                  // int which gives the length of given text
+    public static int textLength;                  // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
     public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public int latestHopDistance;
@@ -21,7 +21,6 @@ public class Control {
         text = new Text();
         fillHashMap();
         setText();
-        SetTextLength();
         Run();
     }
 
@@ -71,13 +70,14 @@ public class Control {
         }
         reader.close();
         textString = rawtext;
+        textLength = rawtext.length();
         return textString;
     }
 
-    public int SetTextLength()
+    /*public int SetTextLength()
     {
         return textLength = textString.length();
-    }
+    }*/
 
     //functoin wich is called by main
     public void Run() throws IOException {

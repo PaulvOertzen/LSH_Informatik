@@ -3,24 +3,25 @@ import java.util.HashMap;
 
 public class Control {
     public static String textString;         // string which contains given text
-    public static int textLength;                  // int which gives the length of given text
+    public int textLength = 732;                  // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
     public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public int latestHopDistance;
     public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
-    int player1Position;
-    int player2Position;
+    int player1Position = 0;
+    int player2Position = 1;
 
 
     public void control() throws IOException {
 
-        noIntersection = false;
+        noIntersection = true;
         game = new Game();
         text = new Text();
         fillHashMap();
         setText();
+        //TextLength();
         Run();
     }
 
@@ -56,8 +57,6 @@ public class Control {
         map.put('ö', 28);
         map.put('ü', 29);
         map.put('ß', 30);
-
-        System.out.println(map);
     }
 
     public String setText() throws IOException {
@@ -70,14 +69,19 @@ public class Control {
         }
         reader.close();
         textString = rawtext;
-        textLength = rawtext.length();
+
         return textString;
     }
 
-    /*public int SetTextLength()
+
+
+    /*public int TextLength()
     {
-        return textLength = textString.length();
+        this.textLength = textString.length()-1;
+        return this.textLength;
     }*/
+
+
 
     //functoin wich is called by main
     public void Run() throws IOException {
@@ -98,30 +102,19 @@ public class Control {
 
             // text length nicht richtig gesetzt oder nd public etc iwas stimmt da nd
             player1Position = game.movePlayer(player1Position); //player 1 moves
+            System.out.println("Player1moves");
             player2Position = game.movePlayer(player2Position); //player 2 moves
+            System.out.println("Player2moves");
+            hasIntersection();
 
-            if (hasIntersection())
+            if (noIntersection = false)
             {
                 run = false;
             }
         }
-        text.edit();
     }
 
-
-    public void export() throws IOException {
-
-        Text TextObject = new Text();                    //Creating a new Text object
-        String outputString = TextObject.OutputString;   //getting the output string from Text object
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/test2.txt"));  //Cosntructor for a bufered writer
-        writer.write(outputString);  //writes the contence of outputString to the file
-        writer.close();
-    }
-
-
-    public boolean hasIntersection()
-    {
+    public boolean hasIntersection() throws IOException {
         if (player1Position == player2Position)
         {
             noIntersection = false;
@@ -133,12 +126,20 @@ public class Control {
         return noIntersection;
     }
 
-    public int intersection()
+    public int intersection()  throws IOException
     {
         if (!noIntersection)
         {
             intersection = player1Position - latestHopDistance;
+            text.edit();
         }
         return intersection;
+    }
+
+    public void export(String outputString) throws IOException {
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/test2.txt"));  //Cosntructor for a bufered writer
+        writer.write(outputString);
+        writer.close();
     }
 }

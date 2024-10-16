@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Text extends Control
 {
     String sb;
-    public String OutputString = sb;
+    String OutputString;
 
     public void edit() throws IOException {
         Control ControlObject = new Control();
@@ -16,7 +16,8 @@ public class Text extends Control
         if (!noIntersection)                             //function for inserting a '$' at the index of the inersection
         {
             sb = textString.substring(0, previousIndex) + IntersectionChar + textString.substring(previousIndex + 1);
-            ControlObject.export();
+            OutputString = sb;
+            ControlObject.export(OutputString);
         }
     }
 }

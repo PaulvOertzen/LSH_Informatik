@@ -1,7 +1,5 @@
 public class Game extends Control {
-    Game() {
-
-    }
+    Game() {}
 
     private static char getChar(int location) {
         return textString.charAt(location);
@@ -35,13 +33,13 @@ public class Game extends Control {
         //System.out.println(jumpWidth);
         latestHopDistance = jumpWidth;
         int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
-        if (destinationIndex >= textLength) { // controlls weather the text has no intersection
+        if (destinationIndex > textLength) { // controlls weather the text has no intersection
             noIntersection = true;  // sets the noIntersection flag
             intersection = 0; // sets the intersaction value to 0 to rebuild a save state
             return textLength;
         }
-        noIntersection = false; // indicates that a intersection was found
-        intersection = destinationIndex; //  sets intersection index
+        noIntersection = true; // indicates that a intersection was found
+        //intersection = destinationIndex; //  sets intersection index
         return destinationIndex;
     }
 

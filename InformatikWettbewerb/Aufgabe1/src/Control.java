@@ -1,18 +1,21 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Control {
     public static String textString;         // string which contains given text
-    public int textLength = 732;                  // int which gives the length of given text
+    public int textLength = 1493;                  // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
     public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public int latestHopDistance;
     public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
-    int player1Position = 0;
-    int player2Position = 1;
+    int player1Position = 78;
+    int player2Position = 89;
 
+    ArrayList<Integer> PositionPlayer1Arr = new ArrayList<Integer>();
+    ArrayList<Integer> PositionPlayer2Arr = new ArrayList<Integer>();
 
     public void control() throws IOException {
 
@@ -60,7 +63,7 @@ public class Control {
     }
 
     public String setText() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/tst1.txt")); // Directory where the .txt file is stored in, should be given at function call
+        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
         String inputtext;
         String rawtext = "";
         while ((inputtext = reader.readLine()) != null)
@@ -69,7 +72,7 @@ public class Control {
         }
         reader.close();
         textString = rawtext;
-
+        textLength = textString.length();
         return textString;
     }
 
@@ -101,10 +104,24 @@ public class Control {
         while (run) {
 
             // text length nicht richtig gesetzt oder nd public etc iwas stimmt da nd
-            player1Position = game.movePlayer(player1Position); //player 1 moves
+            player1Position = game.movePlayer(player1Position); //player 1 moves                                                //
             System.out.println("Player1moves");
-            player2Position = game.movePlayer(player2Position); //player 2 moves
+
+            PositionPlayer1Arr.add(player1Position);
+
+            player2Position = game.movePlayer(player2Position); //player 2 moves                                                //
             System.out.println("Player2moves");
+
+            PositionPlayer2Arr.add(player2Position);
+
+            BufferedWriter writer2 = new BufferedWriter(new FileWriter(""));  //a "method" to ensure everything works properly
+            writer2.write(String.valueOf(PositionPlayer1Arr));
+            writer2.newLine();
+            writer2.write(String.valueOf(PositionPlayer2Arr));
+            writer2.close();
+
+
+
             hasIntersection();
 
             if (noIntersection = false)
@@ -118,6 +135,7 @@ public class Control {
         if (player1Position == player2Position)
         {
             noIntersection = false;
+            System.out.println("Intersection found");
             intersection();
         } else
         {
@@ -138,7 +156,7 @@ public class Control {
 
     public void export(String outputString) throws IOException {
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/test2.txt"));  //Cosntructor for a bufered writer
+        BufferedWriter writer = new BufferedWriter(new FileWriter(""));  //Cosntructor for a bufered writer
         writer.write(outputString);
         writer.close();
     }

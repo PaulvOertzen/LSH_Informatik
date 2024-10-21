@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Control {
     public static String textString;         // string which contains given text
-    public int textLength = 1493;                  // int which gives the length of given text
+    public int textLength;// = 1494;         // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
     public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public int latestHopDistance;
@@ -63,7 +63,7 @@ public class Control {
     }
 
     public String setText() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in, should be given at function call
+        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/tst1.txt")); // Directory where the .txt file is stored in, should be given at function call
         String inputtext;
         String rawtext = "";
         while ((inputtext = reader.readLine()) != null)
@@ -72,18 +72,9 @@ public class Control {
         }
         reader.close();
         textString = rawtext;
-        textLength = textString.length();
+        //this.textLength = textString.length();
         return textString;
     }
-
-
-
-    /*public int TextLength()
-    {
-        this.textLength = textString.length()-1;
-        return this.textLength;
-    }*/
-
 
 
     //functoin wich is called by main
@@ -114,7 +105,7 @@ public class Control {
 
             PositionPlayer2Arr.add(player2Position);
 
-            BufferedWriter writer2 = new BufferedWriter(new FileWriter(""));  //a "method" to ensure everything works properly
+            BufferedWriter writer2 = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test2.txt"));  //a "method" to ensure everything works properly
             writer2.write(String.valueOf(PositionPlayer1Arr));
             writer2.newLine();
             writer2.write(String.valueOf(PositionPlayer2Arr));
@@ -144,8 +135,7 @@ public class Control {
         return noIntersection;
     }
 
-    public int intersection()  throws IOException
-    {
+    public int intersection() throws IOException {
         if (!noIntersection)
         {
             intersection = player1Position - latestHopDistance;
@@ -154,9 +144,11 @@ public class Control {
         return intersection;
     }
 
+
+
     public void export(String outputString) throws IOException {
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(""));  //Cosntructor for a bufered writer
+        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test1.txt"));  //Cosntructor for a bufered writer
         writer.write(outputString);
         writer.close();
     }

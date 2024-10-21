@@ -1,7 +1,7 @@
 public class Game extends Control {
     Game() {}
 
-    private static char getChar(int location) {
+    private char getChar(int location) {
         return textString.charAt(location);
     }
 

@@ -1,5 +1,10 @@
+import java.io.IOException;
+
 public class Game extends Control {
-    Game() {}
+    Game() throws IOException {
+        Control ControlObject = new Control();
+        ControlObject.setText();
+    }
 
     private char getChar(int location) {
         return textString.charAt(location);

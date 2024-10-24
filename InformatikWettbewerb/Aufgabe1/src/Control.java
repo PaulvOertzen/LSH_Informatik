@@ -7,15 +7,16 @@ public class Control {
     public static int textLength;           // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
     public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
+    public boolean run;
     public int latestHopDistance;
     public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
-    int player1Position = 78;
-    int player2Position = 89;
+    int player1Position = 0;
+    int player2Position = 1;
 
-    ArrayList<Integer> PositionPlayer1Arr = new ArrayList<Integer>();
-    ArrayList<Integer> PositionPlayer2Arr = new ArrayList<Integer>();
+    ArrayList<Integer> PositionPlayer1Arr = new ArrayList<>();
+    ArrayList<Integer> PositionPlayer2Arr = new ArrayList<>();
 
     public void control() throws IOException {
 
@@ -63,7 +64,7 @@ public class Control {
     }
 
     public String setText() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/tst1.txt")); // Directory where the .txt file is stored in, should be given at function call
+        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/tst2.txt")); // Directory where the .txt file is stored in, should be given at function call
         String inputtext;
         String rawtext = "";
         while ((inputtext = reader.readLine()) != null)
@@ -77,7 +78,7 @@ public class Control {
 
     public int TextLength()
     {
-        return this.textLength = textString.length();
+        return textLength = textString.length();
     }
 
 
@@ -94,49 +95,41 @@ public class Control {
 
     // the game loop
     public void gameLoop() throws IOException {
-        boolean run = true;
-
+        run = true;
         while (run) {
 
-            // text length nicht richtig gesetzt oder nd public etc iwas stimmt da nd
             player1Position = game.movePlayer(player1Position); //player 1 moves                                                //
-            System.out.println("Player1moves");
-
             PositionPlayer1Arr.add(player1Position);
 
             player2Position = game.movePlayer(player2Position); //player 2 moves                                                //
-            System.out.println("Player2moves");
-
             PositionPlayer2Arr.add(player2Position);
-
-            BufferedWriter writer2 = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test2.txt"));  //a "method" to ensure everything works properly
-            writer2.write(String.valueOf(PositionPlayer1Arr));
-            writer2.newLine();
-            writer2.write(String.valueOf(PositionPlayer2Arr));
-            writer2.close();
-
-
 
             hasIntersection();
 
-            if (noIntersection = false)
-            {
-                run = false;
-            }
+
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test2.txt"));  //Cosntructor for a bufered writer
+            writer.write(String.valueOf(PositionPlayer1Arr));
+            writer.newLine();
+            writer.newLine();
+            writer.write(String.valueOf(PositionPlayer2Arr));
+            writer.close();
+
         }
     }
 
     public boolean hasIntersection() throws IOException {
         if (player1Position == player2Position)
         {
+            run = false;
             noIntersection = false;
-            System.out.println("Intersection found");
             intersection();
+            System.out.println("Intersection found");
         } else
         {
-            noIntersection = true;
+            run = true;
         }
-        return noIntersection;
+        return run;
     }
 
     public int intersection() throws IOException {
@@ -147,8 +140,6 @@ public class Control {
         }
         return intersection;
     }
-
-
 
     public void export(String outputString) throws IOException {
 

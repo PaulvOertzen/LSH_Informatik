@@ -10,7 +10,7 @@ public class Text extends Control
     public void edit() throws IOException {
         Control ControlObject = new Control();
 
-        int previousIndex = intersection;
+        int previousIndex = 78;
         char IntersectionChar = '$';
 
         if (!noIntersection)                             //function for inserting a '$' at the index of the inersection

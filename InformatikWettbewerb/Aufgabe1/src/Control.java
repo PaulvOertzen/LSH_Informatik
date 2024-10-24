@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Control {
     public static String textString;         // string which contains given text
-    public static int textLength;// = 1494;         // int which gives the length of given text
+    public static int textLength;           // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
     public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public int latestHopDistance;

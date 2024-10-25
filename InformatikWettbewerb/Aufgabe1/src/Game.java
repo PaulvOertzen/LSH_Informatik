@@ -7,6 +7,7 @@ public class Game extends Control {
     }
 
     private char getChar(int location) {
+        // if location > string length
         return textString.charAt(location);
     }
 

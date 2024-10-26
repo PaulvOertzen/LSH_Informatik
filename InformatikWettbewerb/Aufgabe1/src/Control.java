@@ -12,7 +12,7 @@ public class Control {
     public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
     public Game game;
     public Text text;
-    int player1Position = 0;
+    int player1Position = 730;
     int player2Position = 1;
 
     ArrayList<Integer> PositionPlayer1Arr = new ArrayList<>();
@@ -20,11 +20,11 @@ public class Control {
 
     public void control() throws IOException {
 
+        setText();
         noIntersection = true;
         game = new Game();
         text = new Text();
         fillHashMap();
-        setText();
         TextLength();
         Run();
     }

@@ -6,13 +6,12 @@ public class Control {
     public static String textString;         // string which contains given text
     public static int textLength;           // int which gives the length of given text
     public int intersection;                // integer which is set to determine the point of intersection
-    public boolean noIntersection;          // boolean which displays weather or not the given text has an intersection
     public boolean run;
+    public static boolean stringIndexOutOfBounds = false;
     public int latestHopDistance;
     public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
     public Game game;
-    public Text text;
-    int player1Position = 730;
+    int player1Position = 0;
     int player2Position = 1;
 
     ArrayList<Integer> PositionPlayer1Arr = new ArrayList<>();
@@ -21,12 +20,10 @@ public class Control {
     public void control() throws IOException {
 
         setText();
-        noIntersection = true;
         game = new Game();
-        text = new Text();
         fillHashMap();
         TextLength();
-        Run();
+        gameLoop();
     }
 
     public static void fillHashMap() {
@@ -64,7 +61,7 @@ public class Control {
     }
 
     public String setText() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/tst2.txt")); // Directory where the .txt file is stored in, should be given at function call
+        BufferedReader reader = new BufferedReader(new FileReader("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/ChatGPT_Meer.txt")); // Directory where the .txt file is stored in, should be given at function call
         String inputtext;
         String rawtext = "";
         while ((inputtext = reader.readLine()) != null)
@@ -81,32 +78,19 @@ public class Control {
         return textLength = textString.length();
     }
 
-
-    //functoin wich is called by main
-    public void Run() throws IOException {
-        gameLoop();
-    }
-
-
-
-    //-----------------------------------------------------------------------------------------------------------------
-
-
-
-    // the game loop
     public void gameLoop() throws IOException {
         run = true;
         while (run) {
 
-            player1Position = game.movePlayer(player1Position); //player 1 moves                                                //
+            player1Position = game.movePlayer(player1Position); //player 1 moves
             PositionPlayer1Arr.add(player1Position);
 
-            player2Position = game.movePlayer(player2Position); //player 2 moves                                                //
+            player2Position = game.movePlayer(player2Position); //player 2 moves
             PositionPlayer2Arr.add(player2Position);
 
-            hasIntersection();
+            //Bedingung, wenn Spieler 1 String IndexOutOfBounds dann nur noch Spieler 2 bewegen, bis auch dieser StringIndexOutOfBounds ist
 
-
+            run = false;
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test2.txt"));  //Cosntructor for a bufered writer
             writer.write(String.valueOf(PositionPlayer1Arr));
@@ -115,36 +99,41 @@ public class Control {
             writer.write(String.valueOf(PositionPlayer2Arr));
             writer.close();
 
+            if (stringIndexOutOfBounds)
+            {
+                run = false;
+                hasIntersection();
+            } else
+            {
+                run = true;
+            }
         }
     }
 
-    public boolean hasIntersection() throws IOException {
-        if (player1Position == player2Position)
+    public void hasIntersection() throws IOException {
+
+        int Length = PositionPlayer1Arr.size();
+        PositionPlayer1Arr.removeAll(PositionPlayer2Arr);
+        System.out.println(PositionPlayer1Arr);
+
+        if (Length == PositionPlayer1Arr.size())
         {
-            run = false;
-            noIntersection = false;
-            intersection();
-            System.out.println("Intersection found");
+            System.out.println("No intersection found");
         } else
         {
-            run = true;
+            System.out.println("Intersection Found");
+            intersection();
         }
-        return run;
     }
 
-    public int intersection() throws IOException {
-        if (!noIntersection)
-        {
-            intersection = player1Position - latestHopDistance;
-            text.edit();
-        }
-        return intersection;
-    }
-
-    public void export(String outputString) throws IOException {
-
+    public void intersection() throws IOException {
+        int i = PositionPlayer1Arr.size();
+        String sb;
+        char IntersectionChar = '$';
+        intersection = PositionPlayer1Arr.get(i /2);
+        sb = textString.substring(0, intersection) + IntersectionChar + textString.substring(intersection+ 1);
         BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test1.txt"));  //Cosntructor for a bufered writer
-        writer.write(outputString);
+        writer.write(sb);
         writer.close();
     }
 }

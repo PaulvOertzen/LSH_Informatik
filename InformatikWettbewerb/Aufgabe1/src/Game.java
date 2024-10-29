@@ -1,13 +1,7 @@
-import java.io.IOException;
-
 public class Game extends Control {
-    Game() throws IOException {
-        Control ControlObject = new Control();
-        ControlObject.setText();
-    }
+    Game()  {}
 
     private char getChar(int location) {
-        // if location > string length  <-- Funktioniert nicht
         return textString.charAt(location);
     }
 
@@ -38,7 +32,6 @@ public class Game extends Control {
         latestHopDistance = jumpWidth;
         int destinationIndex = hops(startLocation, jumpWidth); // does the hopsing
         if (destinationIndex > textLength) { // controlls weather the text has no intersection
-            noIntersection = true;  // sets the noIntersection flag
             intersection = 0; // sets the intersection value to 0 to rebuild a save state
             return textLength;
         }
@@ -73,10 +66,10 @@ public class Game extends Control {
             {
                 System.out.println(e.getMessage());
                 reachedDestination = true;
-                run = false;
+                stringIndexOutOfBounds = true;
+
             }
         }
-
         return currentIndex;
     }
 }

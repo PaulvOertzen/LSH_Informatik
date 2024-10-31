@@ -3,26 +3,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Control {
-    public static String textString;         // string which contains given text
-    public static int textLength;           // int which gives the length of given text
-    public int intersection;                // integer which is set to determine the point of intersection
-    public boolean run;
+    public static String textString;
+    public static int textLength;
+    public int intersection;
     public static boolean stringIndexOutOfBounds = false;
     public int latestHopDistance;
-    public static HashMap<Character, Integer> map = new HashMap<>();        // hashmap which defines character to jump width relations
+    public static HashMap<Character, Integer> map = new HashMap<>();
     public Game game;
     int player1Position = 0;
     int player2Position = 1;
 
-    ArrayList<Integer> PositionPlayer1Arr = new ArrayList<>();
-    ArrayList<Integer> PositionPlayer2Arr = new ArrayList<>();
+    ArrayList<Integer> positionPlayer1Array = new ArrayList<>();
+    ArrayList<Integer> positionPlayer2Array = new ArrayList<>();
 
     public void control() throws IOException {
 
         setText();
-        game = new Game();
         fillHashMap();
         TextLength();
+        game = new Game();
         gameLoop();
     }
 
@@ -79,44 +78,36 @@ public class Control {
     }
 
     public void gameLoop() throws IOException {
-        run = true;
-        while (run) {
+
+        while (!stringIndexOutOfBounds) {
 
             player1Position = game.movePlayer(player1Position); //player 1 moves
-            PositionPlayer1Arr.add(player1Position);
+            positionPlayer1Array.add(player1Position);
 
             player2Position = game.movePlayer(player2Position); //player 2 moves
-            PositionPlayer2Arr.add(player2Position);
-
-            //Bedingung, wenn Spieler 1 String IndexOutOfBounds dann nur noch Spieler 2 bewegen, bis auch dieser StringIndexOutOfBounds ist
-
-            run = false;
+            positionPlayer2Array.add(player2Position);
 
             BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test2.txt"));  //Cosntructor for a bufered writer
-            writer.write(String.valueOf(PositionPlayer1Arr));
+            writer.write(String.valueOf(positionPlayer1Array));
             writer.newLine();
             writer.newLine();
-            writer.write(String.valueOf(PositionPlayer2Arr));
+            writer.write(String.valueOf(positionPlayer2Array));
             writer.close();
 
             if (stringIndexOutOfBounds)
             {
-                run = false;
                 hasIntersection();
-            } else
-            {
-                run = true;
             }
         }
     }
 
     public void hasIntersection() throws IOException {
 
-        int Length = PositionPlayer1Arr.size();
-        PositionPlayer1Arr.removeAll(PositionPlayer2Arr);
-        System.out.println(PositionPlayer1Arr);
+        int positionPlayer1ArrayLength = positionPlayer1Array.size();
+        positionPlayer1Array.removeAll(positionPlayer2Array);
+        System.out.println(positionPlayer1Array);
 
-        if (Length == PositionPlayer1Arr.size())
+        if ( positionPlayer1ArrayLength == positionPlayer1Array.size())
         {
             System.out.println("No intersection found");
         } else
@@ -127,12 +118,12 @@ public class Control {
     }
 
     public void intersection() throws IOException {
-        int i = PositionPlayer1Arr.size();
+        int i = positionPlayer1Array.size();
         String sb;
         char IntersectionChar = '$';
-        intersection = PositionPlayer1Arr.get(i /2);
+        intersection = positionPlayer1Array.get(i /2);
         sb = textString.substring(0, intersection) + IntersectionChar + textString.substring(intersection+ 1);
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test1.txt"));  //Cosntructor for a bufered writer
+        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestResult/test1.txt"));
         writer.write(sb);
         writer.close();
     }

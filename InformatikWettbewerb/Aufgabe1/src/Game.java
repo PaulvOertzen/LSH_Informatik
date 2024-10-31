@@ -67,12 +67,8 @@ public class Game extends Control {
                 System.out.println(e.getMessage());
                 reachedDestination = true;
                 stringIndexOutOfBounds = true;
-
             }
         }
         return currentIndex;
     }
 }
-
-
-

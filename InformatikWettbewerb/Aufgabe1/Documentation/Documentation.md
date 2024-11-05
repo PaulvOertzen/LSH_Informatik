@@ -62,14 +62,14 @@ after that the BufferedReader is closed. After that the textLength is determined
 #### Method: gameLoop
 Moves each player individually and after each move the position of player1 or player2 is written into the 
 respective array. In case the one player jumps out of the text, the hasIntersection Method will be called.
-#### Method: hasIntersection
+#### Method: IntersectionCheck
 In the first part the two arrays, which do contain the positions will be compared and the intersections 
 are going to be removed. If there are positions that were removed the length of one array will be changed.
 We can use this for our advantage and compare the length of the original array with the length of the array 
 in which some entries might have been removed. If both array lengths are the same we know that no entries have been removed 
 and therefore there have been no intersections. 
 If the arraylengths are not the same we know that there is somewhere a intersection and the intersection method will be called.
-#### Method: intersection
+#### Method: IntersectionPlace
 This method takes the positionPlayer1Array and gets the last index of it. 
 This index is the position from where on the intersection between player1 and player2 happened. 
 This position is going to be marked in the original text with a '$' -character, because this word has to be changed 

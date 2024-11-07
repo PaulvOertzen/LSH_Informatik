@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Control {
+public class Text_Maniupulation {
     public static String filepath;
     public static String textString;
     public int intersection;
@@ -33,7 +33,6 @@ public class Control {
         Scanner input = new Scanner(System.in);
         filepath = input.next();
         return filepath;
-        //"/home/tobi/Dokumente/Dokumente/LSH-Marquartstein/Q12/Wahlkurs_Info/Div1/InformatikWettbewerb/Aufgabe1/TestTexts/ChatGPT_Meer.txt"
     }
 
     public static void fillHashMap() {

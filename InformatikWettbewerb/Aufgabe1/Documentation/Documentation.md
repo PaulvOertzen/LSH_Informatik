@@ -44,7 +44,7 @@ Contains the size of the Arraylist where the positions from player 1 get stored 
 ###  Class: Main
 The Main class is simply just for the Compiler to have an entry-point.
 
-### Class: Control 
+### Class: Text_Maniupulation 
 This class does everything that has to do with reading, writing and manipulating texts.
 
 #### Method: fillHashMap

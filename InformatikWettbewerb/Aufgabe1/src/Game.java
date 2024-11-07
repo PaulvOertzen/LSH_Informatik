@@ -1,4 +1,4 @@
-public class Game extends Control {
+public class Game extends Text_Maniupulation {
     Game()  {}
 
     public int movePlayer(int startLocation)  {

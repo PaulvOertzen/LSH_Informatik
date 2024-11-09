@@ -77,8 +77,25 @@ in order to prevent a intersection.
 
 ### Class: Game 
 This class does everything that has to do we with the movement of each player.
-
-
+#### Method: movePlayer
+calls various methods to get the character at a specific position (index), decapitalize it and then look up the corresponding 
+jumpdistance in the HashMap. After that, one individual player will be moved. 
+#### Method: getChar
+Gets passed in the current position as a parameter and then determines the character at this position (index). 
+#### Method: decapitalizeChar
+Decapitalizes the character from getChar, since we have only filled the HashMap with lower-case-characters, 
+to save storage. 
+#### Method: getJump
+Gets the decapitalized character passed in as a parameter and then does look up the hashmap for the corresponding jumpdistance 
+since the key is the character and the value is the jumpdistance. If this method gets passed in a charcter which is not a 
+part of the alphabet (for example: ';' | ':' | '.' | ',' | etc...), the length of the jump will be 0. 
+#### Method: hops
+Does the hopping. This Method jumpes over each character individually and checks if it is a valid character, the targetindex will 
+be incremented by 1 hence the hopdistance has to stay the same but the hopdistance of a non-valid-character is 0.
+The hopping will be stopped, as soon as the player has reached its intended position. 
+In case one of the players does jump out of the text, the game will be stopped for both players, because if one of players does 
+jump aut of the text, this player has won, and the intersection-comparison will be done  in the checkIntersection Method 
+in class TextManipulation. 
 
 
 

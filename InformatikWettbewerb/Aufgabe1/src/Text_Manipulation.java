@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Text_Maniupulation {
+public class Text_Manipulation {
     public static String filepath;
     public static String textString;
     public int intersection;
@@ -18,7 +18,7 @@ public class Text_Maniupulation {
     ArrayList<Integer> positionPlayer2Array = new ArrayList<>();
 
 
-    public void control() throws IOException {
+    public void control() {
 
         FilePath();
         fillHashMap();

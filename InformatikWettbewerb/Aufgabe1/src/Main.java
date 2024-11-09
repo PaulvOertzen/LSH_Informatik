@@ -1,9 +1,7 @@
-import java.io.IOException;
-
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Text_Maniupulation textManiupulationObject = new Text_Maniupulation();
-        textManiupulationObject.control();
+    public static void main(String[] args) {
+        Text_Manipulation textManipulation = new Text_Manipulation();
+        textManipulation.control();
     }
 }

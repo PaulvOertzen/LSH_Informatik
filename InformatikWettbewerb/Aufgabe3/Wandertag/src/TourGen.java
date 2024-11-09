@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class TourGen {
+public class Kmeans {
     
 public List<Point> points;
     public List<Point> centroids;

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Text_Manipulation {
+public class Control {
     public static String filepath;
     public static String textString;
     public int intersection;
@@ -17,18 +17,16 @@ public class Text_Manipulation {
     ArrayList<Integer> positionPlayer1Array = new ArrayList<>();
     ArrayList<Integer> positionPlayer2Array = new ArrayList<>();
 
-
     public void control() {
 
-        FilePath();
+        filePath();
         fillHashMap();
         setText();
         game = new Game();
         gameLoop();
     }
 
-    public static String FilePath()
-    {
+    public static String filePath() {
         System.out.println("Please specify a filepath");
         Scanner input = new Scanner(System.in);
         filepath = input.next();
@@ -72,16 +70,14 @@ public class Text_Manipulation {
     public String setText() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filepath));
-            String inputtext;
-            String rawtext = "";
-            while ((inputtext = reader.readLine()) != null)
-            {
-                rawtext = rawtext.concat(inputtext);
+            String inputText;
+            String rawText = "";
+            while ((inputText = reader.readLine()) != null) {
+                rawText = rawText.concat(inputText);
             }
             reader.close();
-            textString = rawtext;
-        }catch (IOException f)
-        {
+            textString = rawText;
+        } catch (IOException f) {
             System.out.println("You have not specified a valid directory");
             System.out.println("Please specify a filepath");
             Scanner input = new Scanner(System.in);
@@ -126,14 +122,13 @@ public class Text_Manipulation {
 
     public void IntersectionPlace(int intersection) {
         try {
-            String sb = textString.substring(0, intersection) + '$' + textString.substring(intersection+ 1);
+            String output = textString.substring(0, intersection) + '$' + textString.substring(intersection+ 1);
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
-            writer.write(sb);
+            writer.write(output);
             writer.close();
         }catch (IOException f)
         {
             System.out.println("You have not specified a valid directory!");
         }
-
     }
 }

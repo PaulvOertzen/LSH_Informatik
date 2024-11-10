@@ -1,10 +1,10 @@
-public class Game extends Text_Manipulation {
+public class Game extends Control {
     Game()  {}
 
     public int movePlayer(int startLocation)  {
-        char respectiveChar = getChar(startLocation); // gets char at start location
-        respectiveChar = decapitaliseChar(respectiveChar); // replaces capital with lower case letters
-        int jumpWidth = getJump(respectiveChar);  // gets respective jump distance to respective char
+        char currentPositionChar = getChar(startLocation); // gets char at start location
+        currentPositionChar = decapitalizeChar(currentPositionChar); // replaces capital with lower case letters
+        int jumpWidth = getJump(currentPositionChar);  // gets respective jump distance to respective char
         return hops(startLocation, jumpWidth);
     }
 
@@ -12,14 +12,11 @@ public class Game extends Text_Manipulation {
         return textString.charAt(location);
     }
 
-    public char decapitaliseChar(char character) {
+    public char decapitalizeChar(char character) {
         return Character.toLowerCase(character);
     }
 
     public int getJump(char character) {
-        //Parameter is given by getChar(), when function is called
-        //Goal: Look up what Index the character has and return
-        // check weather some character is in the hashmap
         int LengthOfJump;
         if (map.containsKey(character)) {
             LengthOfJump = map.get(character);
@@ -35,10 +32,9 @@ public class Game extends Text_Manipulation {
         int currentIndex = startLocation;
 
         while (!reachedDestination) {
-            try
-            {
+            try {
                 currentIndex += 1;
-                char charAtIndex = decapitaliseChar(getChar(currentIndex));
+                char charAtIndex = decapitalizeChar(getChar(currentIndex));
                 if (getJump(charAtIndex) == 0) {
                     hopTargetIndex++;
                 }
@@ -46,8 +42,7 @@ public class Game extends Text_Manipulation {
                     reachedDestination = true;
                 }
 
-            }catch (StringIndexOutOfBoundsException e)
-            {
+            }catch (StringIndexOutOfBoundsException e) {
                 reachedDestination = true;
                 stringIndexOutOfBounds = true;
             }

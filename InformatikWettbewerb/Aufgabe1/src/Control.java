@@ -99,30 +99,39 @@ public class Control {
 
             if (stringIndexOutOfBounds)
             {
-                IntersectionCheck(intersection);
+                IntersectionCheck();
             }
         }
+
+        System.out.println(positionPlayer1Array);
+        System.out.println("");
+        System.out.println("");
+        System.out.println(positionPlayer2Array);
     }
 
-    public void IntersectionCheck(int intersection) {
+    public void IntersectionCheck() {
         myLoop:
         for (int i = 0; i < positionPlayer1Array.size(); i++)
         {
             for (int j = 0; j < positionPlayer2Array.size(); j++)
             {
-                if (Objects.equals(positionPlayer1Array.get(i), positionPlayer2Array.get(j)))
+                if (positionPlayer1Array.get(i) == positionPlayer2Array.get(j))
                 {
-                    intersection = positionPlayer1Array.get(i -1);
+                  intersection = positionPlayer1Array.get(i - 1);
+
+                    System.out.println("Intersection found" + intersection);
+                    IntersectionPlace(intersection);
                     break myLoop;
+                } else {
+                    System.out.println("Weite rgewhts du dummer nigger");
                 }
             }
         }
-        IntersectionPlace(intersection);
     }
 
     public void IntersectionPlace(int intersection) {
         try {
-            String output = textString.substring(0, intersection) + '$' + textString.substring(intersection+ 1);
+            String output = textString.substring(0, intersection) + '$' + '$' + '$'  + textString.substring(intersection+ 1);
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
             writer.write(output);
             writer.close();

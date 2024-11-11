@@ -4,27 +4,29 @@ import java.util.Random;
 
 //Kmeans Algorythm that is utilized by TourGen Class
 public class Kmeans {
-    public List<Point> points;
+    public List<Point> points; 
     public List<Point> centroids;
-    public int k;
-    public int maxIterations;
+    public int countCentroids; //Count of Centroids
+    public int maxIterations; //How often Algorythm runs
 
-    
+    //Constructor that sets Params to Instance Vars and Inits the centroid list
     public Kmeans(List<Point> points, int k, int maxIterations) {
         this.points = points;
-        this.k = k;
+        this.countCentroids = k;
         this.maxIterations = maxIterations;
         this.centroids = new ArrayList<>();
     }
 
+    //Adds Points from points list to centroids list with a random selector that is ran k times? What is k?
     private void initializeCentroids() {
         Random random = new Random();
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < countCentroids; i++) {
             int randomIndex = random.nextInt(points.size());
             centroids.add(points.get(randomIndex));
         }
     }
 
+    //
     private List<Integer> assignClusters() {
         List<Integer> clusterAssignments = new ArrayList<>();
         for (Point point : points) {
@@ -42,9 +44,10 @@ public class Kmeans {
         return clusterAssignments;
     }
 
+    //
     private void updateCentroids(List<Integer> clusterAssignments) {
         List<Point> newCentroids = new ArrayList<>();
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < countCentroids; i++) {
             double sumX = 0;
             double sumY = 0;
             int count = 0;
@@ -64,6 +67,7 @@ public class Kmeans {
         centroids = newCentroids;
     }
 
+    //Runs the Cluster Analysis for maxIterations
     public void run() {
         initializeCentroids();
         List<Integer> clusterAssignments;
@@ -74,6 +78,7 @@ public class Kmeans {
         }
     }
 
+    //Returns the centroid list
     public List<Point> getCentroids() {
         return centroids;
     }

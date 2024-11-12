@@ -4,6 +4,6 @@ public class main {
 
         control.runProgram();
 
-        System.out.println("Test Program Done");
+        System.out.println("Program Done");
     }
 }

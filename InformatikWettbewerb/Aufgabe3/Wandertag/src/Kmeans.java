@@ -26,7 +26,6 @@ public class Kmeans {
         }
     }
 
-    //
     private List<Integer> assignClusters() {
         List<Integer> clusterAssignments = new ArrayList<>();
         for (Point point : points) {
@@ -44,7 +43,6 @@ public class Kmeans {
         return clusterAssignments;
     }
 
-    //
     private void updateCentroids(List<Integer> clusterAssignments) {
         List<Point> newCentroids = new ArrayList<>();
         for (int i = 0; i < countCentroids; i++) {

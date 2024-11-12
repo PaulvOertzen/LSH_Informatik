@@ -14,33 +14,10 @@ public class Control {
         this.dataPoints = new ArrayList<>();
     }
 
-    //Converts the dinstances into a List
-    public void convert2dimArraytoList() {
-        for (int i = 0; i < distances.length; i++) {
-            //creates, for every entry in distances, a point instance and adds it to the dataPoints list
-            dataPoints.add(i, new Point(distances[i][0], distances[i][1]));
-        }
-    }
-
-    //InitReaderInstance
-    private void initReader() {
-        this.reader = new Reader();
-    }
-    
-    //InitTourgenInstance
-    private void  initTourgen() {
-        this.tourgen = new TourGen(dataPoints);
-    }
-
-    //Set value in tours for index i
-    public void setTourAtIndex(double value, int index) {
-        tours[index] = value;
-    }
-
     //Runs test of Reader Class
     public void runProgram() {
         //initReader 
-        initReader();
+        this.initReader();
 
         //Let the Reader Class do its things
         this.reader.askPath();
@@ -64,26 +41,38 @@ public class Control {
 
         System.out.println("Algorythm Done!");
         
-        this.showData();
+        this.showTours();
     }
 
-    //Shows all datasets in 2Dim array
-    private void showData() {
-        System.out.println("Showing Data from 2dim Array...");
-        for (int i = 0; i < distances.length; i++) {
-            System.out.print("Set Number " + i + ": ");
-            System.out.println(distances[i][0] + " & " + distances[i][1]);
-        }
-        System.out.println("Showing data from PointArraylist...");
-        //For Each point in dataPoints run getx and gety
-        for (Point point : dataPoints) {
-            System.out.println("x: " + point.getX() + " y: " + point.getY());
-        }
-        System.out.println("Showing Data from Tours List... ");
+    //Shows calculated Tours
+    private void showTours() {
+        System.out.println("Showing calculated Tours... ");
         for (int i = 0; i < tours.length; i++) {
             System.out.println("Tour Number " + i + ": " + tours[i]);
         }
         System.out.println("Done Showing Data.");
     }
 
+    //Converts the dinstances into a List
+    private void convert2dimArraytoList() {
+        for (int i = 0; i < distances.length; i++) {
+            //creates, for every entry in distances, a point instance and adds it to the dataPoints list
+            dataPoints.add(i, new Point(distances[i][0], distances[i][1]));
+        }
+    }
+
+    //InitReaderInstance
+    private void initReader() {
+        this.reader = new Reader();
+    }
+    
+    //InitTourgenInstance
+    private void initTourgen() {
+        this.tourgen = new TourGen(dataPoints);
+    }
+
+    //Set value in tours for index i
+    public void setTourAtIndex(double value, int index) {
+        tours[index] = value;
+    }
 }

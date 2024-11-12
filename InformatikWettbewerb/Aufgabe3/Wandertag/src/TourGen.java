@@ -3,7 +3,7 @@ import java.util.List;
 
 //Class that utilizes Kmeans to generate the 3 Tours/Products
 public class TourGen {
-    public List<Point> dataPoints = null; 
+    private List<Point> dataPoints = null; 
     private Kmeans algorythmInstance = null;
     private List<Point> finishedCrentroids = null;
     
@@ -11,22 +11,6 @@ public class TourGen {
     public TourGen(List<Point> givenSets) {
         this.dataPoints = givenSets; 
         this.finishedCrentroids = new ArrayList<>();
-    }
-
-    //Inits Kmeans algorythm with standard settings
-    public void initKmeans() {
-        this.algorythmInstance = new Kmeans(dataPoints, 3, 5);
-    }
-
-    //Inits Kmeans algorythm with given count of Centroids
-    public void initKmeans(int numberCentroids) {
-        this.algorythmInstance = new Kmeans(dataPoints, numberCentroids, 5);
-    }
-
-    public void runAlgorythm() {
-        //Run Algo
-        algorythmInstance.run();
-        this.finishedCrentroids = algorythmInstance.getCentroids();
     }
 
     //Calculate Tours and save into Control
@@ -49,6 +33,23 @@ public class TourGen {
             cInstance.setTourAtIndex(numberBuffer, counter);;
             counter++;
         }
+    }
+
+    //Runs The Algorythm and saves latest centroids to finishedCentroids
+    public void runAlgorythm() {
+        //Run Algo
+        algorythmInstance.run();
+        this.finishedCrentroids = algorythmInstance.getCentroids();
+    }
+
+    //Inits Kmeans algorythm with standard settings
+    public void initKmeans() {
+        this.algorythmInstance = new Kmeans(dataPoints, 3, 5);
+    }
+
+    //Inits Kmeans algorythm with given count of Centroids
+    public void initKmeans(int numberCentroids) {
+        this.algorythmInstance = new Kmeans(dataPoints, numberCentroids, 5);
     }
 
     //Simple Median Function of 2 Numbers

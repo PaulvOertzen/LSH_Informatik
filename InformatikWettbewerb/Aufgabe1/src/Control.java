@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -7,10 +6,10 @@ import java.util.Scanner;
 public class Control {
     public static String filepath;
     public static String textString;
-    public int intersection;
     public static boolean stringIndexOutOfBounds = false;
     public static HashMap<Character, Integer> map = new HashMap<>();
     public Game game;
+    public TextManipulation textManipulation;
     int player1Position = 0;
     int player2Position = 1;
 
@@ -21,7 +20,8 @@ public class Control {
 
         filePath();
         fillHashMap();
-        setText();
+        textManipulation = new TextManipulation();
+        textManipulation.setText();
         game = new Game();
         gameLoop();
     }
@@ -67,26 +67,6 @@ public class Control {
         map.put('ß', 30);
     }
 
-    public String setText() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filepath));
-            String inputText;
-            String rawText = "";
-            while ((inputText = reader.readLine()) != null) {
-                rawText = rawText.concat(inputText);
-            }
-            reader.close();
-            textString = rawText;
-        } catch (IOException f) {
-            System.out.println("You have not specified a valid directory");
-            System.out.println("Please specify a filepath");
-            Scanner input = new Scanner(System.in);
-            filepath = input.next();
-            setText();
-        }
-        return textString;
-    }
-
     public void gameLoop() {
 
         while (!stringIndexOutOfBounds) {
@@ -99,12 +79,13 @@ public class Control {
 
             if (stringIndexOutOfBounds)
             {
-                IntersectionCheck(intersection);
+                IntersectionCheck();
             }
         }
     }
 
-    public void IntersectionCheck(int intersection) {
+    public void IntersectionCheck() {
+        int intersection;
         myLoop:
         for (int i = 0; i < positionPlayer1Array.size(); i++)
         {
@@ -113,22 +94,10 @@ public class Control {
                 if (Objects.equals(positionPlayer1Array.get(i), positionPlayer2Array.get(j)))
                 {
                     intersection = positionPlayer1Array.get(i -1);
+                    textManipulation.IntersectionPlace(intersection);
                     break myLoop;
                 }
             }
-        }
-        IntersectionPlace(intersection);
-    }
-
-    public void IntersectionPlace(int intersection) {
-        try {
-            String output = textString.substring(0, intersection) + '$' + textString.substring(intersection+ 1);
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
-            writer.write(output);
-            writer.close();
-        }catch (IOException f)
-        {
-            System.out.println("You have not specified a valid directory!");
         }
     }
 }

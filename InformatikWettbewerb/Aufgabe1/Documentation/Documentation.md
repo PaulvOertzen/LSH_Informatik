@@ -1,10 +1,20 @@
 # Documentation
 
-## Structure and Designdecisions 
-1: I have decided to not comment the code, since everything will be explained in this documentation. <br>
+## Task definition 
+The task which we were given, stated that we should build a program that helps a person writing texts for a game 
+in which two players jump through a text and who ever jumps out of the text first has won. 
+The problem is, that in many cases there are so-called intersections, which means, that both players will jump out of text at same time.
+Our solution for this problem is, that our program has two players that go through the text and if there is an intersection 
+we would take the position of one player, go one move back and mark that position in the text with '$$$'-characters.
+In case of an intersection we would go back one move and mark this in the text as word which needs to be changed, because 
+this is the position from where on the following intersections happened. 
 
-2: I have divided this program into two class, one that does everything text-related and one that does
-everything player-related
+## Structure and Designdecisions 
+
+1: We have decided to use as few comments as possible, since everything will be explained in this documentation. <br>
+
+2: We have decided to use 4 classes, a class that does everything text-related, one that does everything player-related,
+one that controls the two classes and of course the main class, which serves as entry-point for the compiler. 
 
 3: We have tried a few algorithms to find intersections: <br>
 3.1: Comparing the positions of each player after each move. This would have the advantage that you can stop the game as soon 
@@ -15,6 +25,32 @@ Player2: [1; 7; 25; 37; 45; ...] <br>
 3.2: Due to the drawback of the first option, we decided to write every position into a individual Arraylist and then iterate 
 through them, to find possible common entries. If there were two common entries the algorithm would go back to previous index (referring to the Arraylist index)
 since this index was the cause for the intersection.
+
+
+## Classes 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Variables  
 In this section I will briefly explain all the variables.

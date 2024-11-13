@@ -23,9 +23,9 @@ public class TextManipulation extends Control {
         return textString;
     }
 
-    public void IntersectionPlace(int intersection) {
+    public void TextOutput(int intersection) {
         try {
-            String output = textString.substring(0, intersection) + '$' + textString.substring(intersection+ 1);
+            String output = textString.substring(0, intersection) + '$' + '$' + '$' + textString.substring(intersection+ 1);
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
             writer.write(output);
             writer.close();

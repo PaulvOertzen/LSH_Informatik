@@ -4,6 +4,7 @@
 The task which we were given, stated that we should build a program that helps a person writing texts for a game 
 in which two players jump through a text and who ever jumps out of the text first has won. 
 The problem is, that in many cases there are so-called intersections, which means, that both players will jump out of text at same time.
+## Solution
 Our solution for this problem is, that our program has two players that go through the text and if there is an intersection 
 we would take the position of one player, go one move back and mark that position in the text with '$$$'-characters.
 In case of an intersection we would go back one move and mark this in the text as word which needs to be changed, because 
@@ -18,7 +19,7 @@ one that controls the two classes and of course the main class, which serves as 
 
 3: We have tried a few algorithms to find intersections: <br>
 3.1: Comparing the positions of each player after each move. This would have the advantage that you can stop the game as soon 
-as there would be an intersection, however we will not be abler to detect time delayed intersections. A time delayed intersection 
+as there would be an intersection, however we will not be able to detect time delayed intersections. A time delayed intersection 
 is a intersection when two players jump over the exact same indexes, but not at the same time. For example: <br>
 Player1: [0; 5; 7; 25; 37; ...] <br>
 Player2: [1; 7; 25; 37; 45; ...] <br>
@@ -27,12 +28,38 @@ through them, to find possible common entries. If there were two common entries 
 since this index was the cause for the intersection.
 
 
-## Classes 
-
-
-
-
-
+## Class Main 
+This class does just serve as the entry-point for the compiler and only contains a instance of the Control class. <br>
+This class contains no further methods.
+## Class Control
+As the name already says, this is the class which does control the two remaining classes and contains various algorithms to initialise
+and fill the hashmap, take in the path of the inputtext, does move the players and check if there is an intersection or not.
+### Method control 
+Contains to method-calls for the remaining methods and also contains a instance of the TextManipulation class.
+### Method filePath
+This method uses a scanner to get the directory in which the user has stored it's .txt file which he wants to be analyzed.
+The scanners input is assigned to the filepath variable.
+### Method fillHashMap
+This method fills the Hashmap, which is just simply called 'map', with the characters and the respective hoppingdistances. <br>
+a -> 1 <br>
+b -> 2 <br>
+c -> 3 <br>
+...    <br>
+ß -> 30
+### Method gameLoop
+This method moves each player individually. This is done with a for-loop with !stringIndexOutOfBounds as condition.
+As long as both players are within the bounds of the text, this variable set to false and will only be set to ture in case one does jump out of the text.
+The positions of each player are stored in the player1Position and player2Position variables and after each move the current position will be written into an 
+Arraylist (positionPlayer1Array and positionPlayer2Array). Once one player jumps out of the text, the intersectionCheck method will be called.
+### Method intersectionCheck 
+The check for an intersection is done with two nested for loops. The first for-loop takes one entry from the positionPlayer1Array at the index i 
+and then compares it against all entries in the positionPlayer2Array. In case there is an intersection, meaning that one index from positionPlayer1Array
+is equal to one index of positionPlayer2Array, we take the entry at i-1 from positionPlayer1Array, since this is the index from where on all the following intersections happened.
+The value of the entry at i-1 will be assigned to the intersectionPlace variable and then passed in as a parameter in the TextOutput method, which the 
+TextManipulation class contains. 
+## Class TextManipulation 
+This class does everything text-related, that means that this class takes care of reading the .txt file which the user has specified 
+and also takes care of exporting a new .txt file with the intersection marked in the text.
 
 
 
@@ -100,19 +127,12 @@ is currently at, is a valid ASCI-charcater or not.
 
 ## Classes and Methods
 
-###  Class: Main
-The Main class is simply just for the Compiler to have an entry-point.
 
-### Class: Control 
-This class does everything that has to do with reading, writing and manipulating texts.
 
-#### Method: fillHashMap
-This method fills the Hashmap with the characters and the respective hoppingdistances. <br>
-a -> 1 <br>
-b -> 2 <br>
-c -> 3 <br>
-...    <br>
-ß -> 30 
+
+
+
+
 #### Method: setText & TextLength
 The setText method is used to read the text which is stored in a specific .txt-file.
 This is done with a BufferedReader and a FileReader. The content of this File is stored in a variable called input.

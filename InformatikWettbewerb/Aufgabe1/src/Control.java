@@ -79,13 +79,13 @@ public class Control {
 
             if (stringIndexOutOfBounds)
             {
-                IntersectionCheck();
+                intersectionCheck();
             }
         }
     }
 
-    public void IntersectionCheck() {
-        int intersection;
+    public void intersectionCheck() {
+        int intersectionPlace;
         myLoop:
         for (int i = 0; i < positionPlayer1Array.size(); i++)
         {
@@ -93,8 +93,8 @@ public class Control {
             {
                 if (Objects.equals(positionPlayer1Array.get(i), positionPlayer2Array.get(j)))
                 {
-                    intersection = positionPlayer1Array.get(i -1);
-                    textManipulation.IntersectionPlace(intersection);
+                    intersectionPlace = positionPlayer1Array.get(i -1);
+                    textManipulation.TextOutput(intersectionPlace);
                     break myLoop;
                 }
             }

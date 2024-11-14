@@ -44,12 +44,12 @@ public class TourGen {
 
     //Inits Kmeans algorythm with standard settings
     public void initKmeans() {
-        this.algorythmInstance = new Kmeans(dataPoints, 3, 5);
+        this.algorythmInstance = new Kmeans(dataPoints, 3, 25);
     }
 
     //Inits Kmeans algorythm with given count of Centroids
     public void initKmeans(int numberCentroids) {
-        this.algorythmInstance = new Kmeans(dataPoints, numberCentroids, 5);
+        this.algorythmInstance = new Kmeans(dataPoints, numberCentroids, 25);
     }
 
     //Simple Median Function of 2 Numbers

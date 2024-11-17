@@ -1,13 +1,13 @@
 import java.util.*;
 
 public class Graph {
-    private Map<Node, List<Node>> adjList; // Adjacency list for the graph
+    private Map<Node, List<Node>> adjacencyListMap; // Adjacency list for the graph
 
     public Graph() {
-        adjList = new HashMap<>();
+        adjacencyListMap = new HashMap<>();
     }
 
-    private List<Character> shrinkToOnlyValuesOfInterest(String toBeSplit) {
+    public List<Character> shrinkToOnlyValuesOfInterest(String toBeSplit) {
         List<Character> splitItems;
         splitItems = new ArrayList<Character>();
         for (Character item : toBeSplit.toCharArray()) {
@@ -21,42 +21,26 @@ public class Graph {
     public void BuildGraphByList(ArrayList<String> comparisonsList) {
         for (int i = 1; i < (comparisonsList.size() - 1); i++)  // loops through lines of file but not the first and last one so only the comparison lines
         {
-            List<Character> comparedItems = shrinkToOnlyValuesOfInterest(comparisonsList.get(i));
-            int comparedItemsSize = comparedItems.size();
-            System.out.println(comparedItems.toString() + (comparedItemsSize));
+            List<Character> comparedItems = shrinkToOnlyValuesOfInterest(comparisonsList.get(i)); // removes everything from line that is junk
+            int comparedItemsSize = comparedItems.size(); // values for loop length
             for (int x = 1; x < (comparedItemsSize); x++) {
-                System.out.println(comparedItems.get(x - 1).toString() + comparedItems.get(x).toString() + x);
+                // creates Node objects for edges
                 Node to = new Node(comparedItems.get(x));
                 Node from = new Node(comparedItems.get(x - 1));
-                this.addEdge(from, to);
+                this.addEdge(from, to); // adds edges to graph
             }
         }
     }
 
-    // Add a directed edge from 'from' to 'to'
     public void addEdge(Node from, Node to) {
-        adjList.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
-
-            // Add the reverse edge for the dual graph
+        adjacencyListMap.computeIfAbsent(from, k -> new ArrayList<>()).add(to); // adds edge if not already present
     }
 
-    // Get neighbors of a node in the original graph
     public List<Node> getNeighbors(Node node) {
-        return adjList.getOrDefault(node, new ArrayList<>());
+        return adjacencyListMap.getOrDefault(node, new ArrayList<>());
     }
 
-    // Display the graph
-    public void printGraph() {
-        System.out.println("Graph:");
-        for (Node node : adjList.keySet()) {
-            System.out.print(node + " -> ");
-            for (Node neighbor : adjList.get(node)) {
-                System.out.print(neighbor + " ");
-            }
-            System.out.println();
-        }
-    }
     public ArrayList getAllKeys() {
-        return new ArrayList<>(adjList.keySet());
+        return new ArrayList<>(adjacencyListMap.keySet());
     }
 }

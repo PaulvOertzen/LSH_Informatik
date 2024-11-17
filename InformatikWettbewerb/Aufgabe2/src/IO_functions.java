@@ -21,8 +21,6 @@ public class IO_functions {
             while ((line = reader.readLine()) != null) {
                 sourceFileContent.add(line);
             }
-            System.out.println(sourceFileContent);
-            System.out.println(sourceFileContent.get(1));
             reader.close();
         } catch (IOException e) {
             System.out.println("file " + sourceFilePath + " was not found");

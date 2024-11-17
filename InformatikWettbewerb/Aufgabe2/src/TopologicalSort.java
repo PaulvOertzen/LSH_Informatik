@@ -42,6 +42,7 @@ public class TopologicalSort {
         }
 
         // If the topological sort doesn't include all nodes, there's a cycle
+        System.out.println(topOrder);
         if (topOrder.size() != nodes.size()) {
             System.out.println("Graph has a cycle. Topological sort not possible.");
             return new ArrayList<>();

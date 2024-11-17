@@ -1,40 +1,59 @@
 import java.util.*;
 
 public class Graph {
-    private Map<Character, List<Character>> map = new HashMap<>();
-    private List<Character> visitedNodes;
-    private List<Character> sortedNodes;
+    private Map<Node, List<Node>> adjList; // Adjacency list for the graph
+    private Map<Node, List<Node>> dualAdjList; // Adjacency list for the dual (reversed) graph
 
-    public void addNode(Character node) {
-        map.put(node, new LinkedList<Character>());
+    public Graph() {
+        adjList = new HashMap<>();
+        dualAdjList = new HashMap<>();
     }
+    public void BuildGraphByList(ArrayList comparisonsList) {
+        for (int i = 1; i < comparisonsList.size() - 1; i ++)  // loops through lines of file but not the first and last one so only the comparison lines
+        {
+            comparisonsList.get(i);
 
-    public void addEdge(Character sourceNode, Character destinationNode) {
-        if (!map.containsKey(sourceNode)) {
-            addNode(sourceNode);
         }
-        if (!map.containsKey(destinationNode)) {
-            addNode(destinationNode);
+    }
+    // Add a directed edge from 'from' to 'to'
+    public void addEdge(Node from, Node to) {
+        adjList.computeIfAbsent(from, k -> new ArrayList<>()).add(to);
+
+        // Add the reverse edge for the dual graph
+        dualAdjList.computeIfAbsent(to, k -> new ArrayList<>()).add(from);
+    }
+
+    // Get neighbors of a node in the original graph
+    public List<Node> getNeighbors(Node node) {
+        return adjList.getOrDefault(node, new ArrayList<>());
+    }
+
+    // Get neighbors of a node in the dual (reversed) graph
+    public List<Node> getDualNeighbors(Node node) {
+        return dualAdjList.getOrDefault(node, new ArrayList<>());
+    }
+
+    // Display the graph
+    public void printGraph() {
+        System.out.println("Graph:");
+        for (Node node : adjList.keySet()) {
+            System.out.print(node + " -> ");
+            for (Node neighbor : adjList.get(node)) {
+                System.out.print(neighbor + " ");
+            }
+            System.out.println();
         }
-        map.get(sourceNode).add(destinationNode);
     }
 
-    private Character getSmallestNode() {
-        return ('c');
-    }
-
-    private Boolean hasBeenVisited(Character node) {
-        return (visitedNodes.contains(node));
-    }
-
-    private void addToVisited(Character node) {
-        visitedNodes.add(node);
-    }
-
-    public Boolean traverseGraph(Character startNode, Character endNode) {
-        ArrayList<List<Character>> availableNodes;
-        availableNodes = new ArrayList<List<Character>>();
-        // https://iq.opengenus.org/topological-sorting-dfs/
-        return false;
+    // Display the dual graph
+    public void printDualGraph() {
+        System.out.println("Dual Graph:");
+        for (Node node : dualAdjList.keySet()) {
+            System.out.print(node + " -> ");
+            for (Node neighbor : dualAdjList.get(node)) {
+                System.out.print(neighbor + " ");
+            }
+            System.out.println();
+        }
     }
 }

@@ -3,17 +3,15 @@ public class Game extends Control {
 
     public int movePlayer(int startLocation)  {
         char currentPositionChar = getChar(startLocation); // gets char at start location
-        currentPositionChar = decapitalizeChar(currentPositionChar); // replaces capital with lower case letters
         int jumpWidth = getJump(currentPositionChar);  // gets respective jump distance to respective char
         return hops(startLocation, jumpWidth);
     }
 
     private char getChar(int location) {
-        return textString.charAt(location);
-    }
-
-    public char decapitalizeChar(char character) {
-        return Character.toLowerCase(character);
+        char characterAtPosition;
+        characterAtPosition = textString.charAt(location);
+        characterAtPosition = Character.toLowerCase(characterAtPosition);
+        return characterAtPosition;
     }
 
     public int getJump(char character) {
@@ -28,13 +26,13 @@ public class Game extends Control {
 
     public int hops(int startLocation, int hopDistance)  {
         boolean reachedDestination = false;
-        int hopTargetIndex = hopDistance + startLocation;
         int currentIndex = startLocation;
+        int hopTargetIndex = hopDistance + startLocation;
 
         while (!reachedDestination) {
             try {
-                currentIndex += 1;
-                char charAtIndex = decapitalizeChar(getChar(currentIndex));
+                currentIndex++;
+                char charAtIndex = getChar(currentIndex);
                 if (getJump(charAtIndex) == 0) {
                     hopTargetIndex++;
                 }

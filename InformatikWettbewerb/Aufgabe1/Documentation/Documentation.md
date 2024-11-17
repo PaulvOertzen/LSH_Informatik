@@ -56,122 +56,37 @@ The check for an intersection is done with two nested for loops. The first for-l
 and then compares it against all entries in the positionPlayer2Array. In case there is an intersection, meaning that one index from positionPlayer1Array
 is equal to one index of positionPlayer2Array, we take the entry at i-1 from positionPlayer1Array, since this is the index from where on all the following intersections happened.
 The value of the entry at i-1 will be assigned to the intersectionPlace variable and then passed in as a parameter in the TextOutput method, which the 
-TextManipulation class contains. 
+TextManipulation class contains. In case the Calculated intersection place, is <0, the intersectionplace variable will be set to 0 since there are no negative indexes.
 ## Class TextManipulation 
 This class does everything text-related, that means that this class takes care of reading the .txt file which the user has specified 
 and also takes care of exporting a new .txt file with the intersection marked in the text.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Variables  
-In this section I will briefly explain all the variables.
-As general rule, I defined alle the variables to the smallest scope possible.
-
-### Globally defined variables
-
-#### filepath 
-A Variable that takes the absolute directory where the .txt file with its text is stored.
-#### textString 
-A variable that contains the text as a string, which the user want's to be analyzed.
-#### intersection 
-Specific point in text where an intersection happened. 
-The Value of this variable is used to put a marking into the text.
-#### stringIndexOutOfBounds
-Is used to stop the game and continue with the next step, once the end of a given text is reached.
-#### map
-Contains the hoppingdistances for each character. Logically, the characters are the 'key'
-#### player1Position / player2Position
-Used to initialize the starting position's and track the positions throughout the game.
-#### positionPlayer1Array / positionPlayer2Array
-Each position is written into this array. Those positions are used to determine if there is 
-an intersection or not.
-#### rawtext 
-Each line of text from the .txt file gets written in there and then passed 
-into the rawtext variable and further on into textString and then returned to the globally 
-defined variable
-#### positionPlayer1ArrayLength
-Contains the size of the Arraylist where the positions from player 1 get stored in
-(Further explanation in "Methods")
-
-### Locally defined variables 
-
-#### startLocation
-The current location of either Player1 or Player2, passed in as a parameter 
-#### currentPositionChar
-The character at a given position of a player. 
-#### jumpWith
-The jumpdistance, based on which character one player is currently at. 
-#### reachedDestination 
-Variable to check if a player has reached its intended index or not.
-#### hopTargetIndex
-The index where a player should go to
-#### currentIndex
-Index, where a player is currently at. This variable is used to check, if the character where the player 
-is currently at, is a valid ASCI-charcater or not.  
-
-## Classes and Methods
-
-
-
-
-
-
-
-#### Method: setText & TextLength
-The setText method is used to read the text which is stored in a specific .txt-file.
-This is done with a BufferedReader and a FileReader. The content of this File is stored in a variable called input.
-The While-function is used to iterate through each line of the file, until there is nothing left to read,
-after that the BufferedReader is closed. After that the textLength is determined in the next method (TextLength)
-#### Method: gameLoop
-Moves each player individually and after each move the position of player1 or player2 is written into the 
-respective array. In case the one player jumps out of the text, the hasIntersection Method will be called.
-#### Method: IntersectionCheck
-In the first part the two arrays, which do contain the positions will be compared and the intersections 
-are going to be removed. If there are positions that were removed the length of one array will be changed.
-We can use this for our advantage and compare the length of the original array with the length of the array 
-in which some entries might have been removed. If both array lengths are the same we know that no entries have been removed 
-and therefore there have been no intersections. 
-If the arraylengths are not the same we know that there is somewhere a intersection and the intersection method will be called.
-#### Method: IntersectionPlace
-This method takes the positionPlayer1Array and gets the last index of it. 
-This index is the position from where on the intersection between player1 and player2 happened. 
-This position is going to be marked in the original text with a '$' -character, because this word has to be changed 
-in order to prevent a intersection. 
-
-### Class: Game 
-This class does everything that has to do we with the movement of each player.
-#### Method: movePlayer
-calls various methods to get the character at a specific position (index), decapitalize it and then look up the corresponding 
-jumpdistance in the HashMap. After that, one individual player will be moved. 
-#### Method: getChar
-Gets passed in the current position as a parameter and then determines the character at this position (index). 
-#### Method: decapitalizeChar
-Decapitalizes the character from getChar, since we have only filled the HashMap with lower-case-characters, 
-to save storage. 
-#### Method: getJump
-Gets the decapitalized character passed in as a parameter and then does look up the hashmap for the corresponding jumpdistance 
-since the key is the character and the value is the jumpdistance. If this method gets passed in a charcter which is not a 
-part of the alphabet (for example: ';' | ':' | '.' | ',' | etc...), the length of the jump will be 0. 
-#### Method: hops
-Does the hopping. This Method jumpes over each character individually and checks if it is a valid character, the targetindex will 
-be incremented by 1 hence the hopdistance has to stay the same but the hopdistance of a non-valid-character is 0.
-The hopping will be stopped, as soon as the player has reached its intended position. 
-In case one of the players does jump out of the text, the game will be stopped for both players, because if one of players does 
-jump aut of the text, this player has won, and the intersection-comparison will be done  in the checkIntersection Method 
-in class TextManipulation.
+### Method setText
+We are using a buffered reader to read the .txt file. As long as the text has a next line, this will be read.
+The contence of one line will be assigned to the inputText variable and then passed into the rawText variable.
+Once the process of reading the file is done, the contence of rawtext will be assigned to textString and then returned.
+In case the user provides a invalid directory, he has the possibility to enter a valid directory.
+### Method TextOutput
+Gets passed in the place where a intersection happened as parameter and insterts three '$'-characters at this 
+position. After that, the original file will overwritten, to make it easier for the user, since he does not need 
+to search the output file.
+## Class Game 
+Does everything from getting the character at a specific position, calculating the jumplength and moving the players.
+### Method movePlayer
+Gets passed in the position of each player individually and then looks up the character by calling 
+the getChar method, which does also decpitalize the characters.
+Once those steps are done, the jumpwidth will be looked up in the Hashmap (Method getJump) and then finally 
+moves the player.
+### Method getChar
+Gets passed in the current position and uses the textString to get the character at this position. 
+The character will be assigned to a variable called characterAtPosition. 
+### Method getJump
+Contains a variable which is called lengthOfJump. It uses the Hashmap and the character characterAtPosition.
+The character is the key and the jumpwidth is the corresponding value. 
+### Method hops
+Calculates the hopTargetIndex by adding the hopDistance and startlocation.
+The currentindex contains the current position of one player. It gets incremented by 1 for each iteration.
+For each iteration, the hopTargetIndex and currentIndex will be compared and if they are equal, meaning that the intended 
+destination was reached, the hopping will be stopped. In case one player jumpes out of the text, the hopping will also be stopped. 
+The method jumpes over each character individually and checks if it is a valid character or not. 
+If a character is not valid, the hopTargetIndex will be incremented by one, since the hoppingdistance always has stay the same 
+but the hoppingvalue is 0.

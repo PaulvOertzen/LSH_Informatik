@@ -94,6 +94,10 @@ public class Control {
                 if (Objects.equals(positionPlayer1Array.get(i), positionPlayer2Array.get(j)))
                 {
                     intersectionPlace = positionPlayer1Array.get(i -1);
+                    if (intersectionPlace < 0)
+                    {
+                        intersectionPlace = 0;
+                    }
                     textManipulation.TextOutput(intersectionPlace);
                     break myLoop;
                 }

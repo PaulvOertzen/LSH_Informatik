@@ -1,7 +1,10 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Graph {
-    private Map<Node, List<Node>> adjacencyListMap; // Adjacency list for the graph
+    private final Map<Node, List<Node>> adjacencyListMap; // Adjacency list for the graph
 
     public Graph() {
         adjacencyListMap = new HashMap<>();

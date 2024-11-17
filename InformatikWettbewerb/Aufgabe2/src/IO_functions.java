@@ -1,9 +1,12 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IO_functions {
     private String sourceFilePath;
-    private ArrayList<String> sourceFileContent;
+    private final ArrayList<String> sourceFileContent;
 
     IO_functions() {
         sourceFileContent = new ArrayList<String>();
@@ -39,6 +42,7 @@ public class IO_functions {
             for (Node usedNode : cleanList) {
                 if (usedNode.getValue() == node.getValue()) {
                     isDouplicate = true;
+                    break;
                 }
             }
             if (!isDouplicate) {

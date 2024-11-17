@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -27,6 +28,6 @@ public class Main {
             }
         }
 
-        System.out.println(cleandedSorted.toString());
+        System.out.println(cleandedSorted);
     }
 }

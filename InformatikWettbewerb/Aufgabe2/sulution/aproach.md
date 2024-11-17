@@ -1,12 +1,15 @@
-map mit key 
-    key => comparison
+Graph with every key
+edges are directional between nodes
 
-array mit allen keys
+if a node pair can reach each other, the graph is cyclic and thus faulty
 
-bubble sort (key > key + 1 Über map)
+if anode is reachable by another but not in reverse direction, the this node is smaller than the other one
 
-return array[0:amgegebene menge]
-
-comparison {
-    a > b
-}
+par example:
+A -> B, E
+B -> C
+C -> F, D
+D ->
+E -> G
+F -> D
+G -> F

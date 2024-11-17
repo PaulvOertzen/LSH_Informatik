@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -93,13 +96,19 @@ public class Control {
             {
                 if (Objects.equals(positionPlayer1Array.get(i), positionPlayer2Array.get(j)))
                 {
-                    intersectionPlace = positionPlayer1Array.get(i -1);
-                    if (intersectionPlace < 0)
+                    try
+                    {
+                        intersectionPlace = positionPlayer1Array.get(i -1);
+                        System.out.println("Intersection found at: " + intersectionPlace + ".");
+                        textManipulation.TextOutput(intersectionPlace);
+                        break myLoop;
+                    } catch (IndexOutOfBoundsException e)
                     {
                         intersectionPlace = 0;
+                        textManipulation.TextOutput(intersectionPlace);
+                        System.out.println("Intersection found at: " + intersectionPlace + ".");
+                        break myLoop;
                     }
-                    textManipulation.TextOutput(intersectionPlace);
-                    break myLoop;
                 }
             }
         }

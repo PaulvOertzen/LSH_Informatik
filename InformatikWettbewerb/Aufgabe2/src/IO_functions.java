@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class IO_functions {
     private String sourceFilePath;
@@ -10,6 +11,19 @@ public class IO_functions {
 
     IO_functions() {
         sourceFileContent = new ArrayList<String>();
+    }
+
+    public String getFilePath(String defaultValue) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("example path: "+defaultValue);
+        System.out.print("Enter file path: ");
+
+        String path = scanner.nextLine();
+        if (path == "") {
+            path = defaultValue;
+        }
+        System.out.println("file '"+path+"' selected");
+        return path;
     }
 
     public ArrayList getContent() {
@@ -29,8 +43,8 @@ public class IO_functions {
             }
             reader.close();
         } catch (IOException e) {
-            System.out.println("file " + sourceFilePath + " was not found");
-            //  e.printStackTrace();
+            System.out.println("file '" + sourceFilePath + "'asa was not found, please reconsider your input");
+            e.notify();
         }
     }
 

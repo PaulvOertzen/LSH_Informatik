@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         IO_functions iof = new IO_functions();
         Graph graph = new Graph();
-        iof.setFilePath("InformatikWettbewerb/Aufgabe2/files/schwierigkeiten1.txt");
+        iof.setFilePath(iof.getFilePath("InformatikWettbewerb/Aufgabe2/files/schwierigkeiten0.txt"));
         iof.readFile();
         // Create the graph and nodes by content from file
         List fileContent = iof.getContent();
@@ -17,7 +17,7 @@ public class Main {
         // sorted without douplicates
         List<Node> sorted = iof.removedDuplicates(topologicalOrder);
 
-        List<Character> wanted = graph.shrinkToOnlyValuesOfInterest(fileContent.getLast().toString());
+        List<Character> wanted = graph.shrinkToOnlyValuesOfInterest(fileContent.get(fileContent.size() - 1).toString());
 
         //get wanted assigmnts
         List<Character> cleandedSorted = new ArrayList<>();
@@ -27,7 +27,7 @@ public class Main {
                 cleandedSorted.add(node.getValue());
             }
         }
-
+        System.out.println("Sorted assignments:");
         System.out.println(cleandedSorted);
     }
 }

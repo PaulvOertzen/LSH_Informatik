@@ -12,7 +12,7 @@ public class Graph {
 
     public List<Character> shrinkToOnlyValuesOfInterest(String toBeSplit) {
         List<Character> splitItems;
-        splitItems = new ArrayList<Character>();
+        splitItems = new ArrayList<>();
         for (Character item : toBeSplit.toCharArray()) {
             if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".contains(item.toString())) {
                 splitItems.add(item);
@@ -43,7 +43,7 @@ public class Graph {
         return adjacencyListMap.getOrDefault(node, new ArrayList<>());
     }
 
-    public ArrayList getAllKeys() {
-        return new ArrayList<>(adjacencyListMap.keySet());
+    public ArrayList<Node> getAllKeys() {
+        return new ArrayList<Node>(adjacencyListMap.keySet());
     }
 }

@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class IO_functions {
-    private String sourceFilePath;
     private final ArrayList<String> sourceFileContent;
+    private String sourceFilePath;
 
     IO_functions() {
         sourceFileContent = new ArrayList<String>();
@@ -15,18 +15,18 @@ public class IO_functions {
 
     public String getFilePath(String defaultValue) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("example path: "+defaultValue);
+        System.out.println("example path: " + defaultValue);
         System.out.print("Enter file path: ");
 
         String path = scanner.nextLine();
         if (path == "") {
             path = defaultValue;
         }
-        System.out.println("file '"+path+"' selected");
+        System.out.println("file '" + path + "' selected");
         return path;
     }
 
-    public ArrayList getContent() {
+    public ArrayList<String> getContent() {
         return this.sourceFileContent;
     }
 

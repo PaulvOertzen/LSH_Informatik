@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.ArrayList;
-
 //Control class with all Data
 public class Control {
     private List<Point> dataPoints = null; //Point List later used by TourGen and its tools
@@ -51,9 +50,6 @@ public class Control {
 
     //Searches the entries which will participate in one of these tours
     public void findPeople() {
-        //Diese Funktion macht: Nimmt einen Dataset, überprüft eine ausgerechnete Tour zischen 
-        //min und max liegt wenn ja dann speicher er diese in die BufferArray welche dann zu der 
-        //Liste hinzugefügt wird bei dem eintrag 1 für die Tour 1
         for (int i = 0; i < tours.length; i++) {
             for (int j = 0; j < distances.length; j++) {
                 //If tours is in betwenn min and max of j. entry of distances

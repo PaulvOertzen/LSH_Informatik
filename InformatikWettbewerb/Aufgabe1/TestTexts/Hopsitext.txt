@@ -1,3 +1,0 @@
-Zara hat das Texthopsen schon programmiert. Dabei ist ihr aufgefallen, dass die beiden Spieler erstaunlich häufig von der selben Stelle aus dem Text herausspringen.
-Sie versucht einen möglichst langen Text zu schreiben, der diese Eigenschaft nicht hat. Das heißt, das die Sprungsequenzen, die am ersten und zweiten Buchstaben
-des Textes beginnen, sollen nicht zur selben Endposition führen. So einen Text nennt sie einen 'Hopsitext'. Dieser Aufgabentext ist zum Beispiel ein solcher Hopsitext.

@@ -36,7 +36,7 @@ public class Graph {
     }
 
     public void addEdge(Node from, Node to) {
-        adjacencyListMap.computeIfAbsent(from, k -> new ArrayList<>()).add(to); // adds edge if not already present
+        adjacencyListMap.computeIfAbsent(from, _ -> new ArrayList<>()).add(to); // adds edge if not already present
     }
 
     public List<Node> getNeighbors(Node node) {
@@ -44,6 +44,6 @@ public class Graph {
     }
 
     public ArrayList<Node> getAllKeys() {
-        return new ArrayList<Node>(adjacencyListMap.keySet());
+        return new ArrayList<>(adjacencyListMap.keySet());
     }
 }

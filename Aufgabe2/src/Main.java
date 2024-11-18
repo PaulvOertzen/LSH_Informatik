@@ -23,8 +23,8 @@ public class Main {
         List<Character> cleanSorted = new ArrayList<>();
         // remove unwanted
         for (Node node : sorted) {
-            if (wanted.contains(node.getValue())) {
-                cleanSorted.add(node.getValue());
+            if (wanted.contains(node.value())) {
+                cleanSorted.add(node.value());
             }
         }
         System.out.println("Sorted assignments:");

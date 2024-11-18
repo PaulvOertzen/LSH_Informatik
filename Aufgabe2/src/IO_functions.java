@@ -10,7 +10,7 @@ public class IO_functions {
     private String sourceFilePath;
 
     IO_functions() {
-        sourceFileContent = new ArrayList<String>();
+        sourceFileContent = new ArrayList<>();
     }
 
     public String getFilePath(String defaultValue) {
@@ -19,7 +19,7 @@ public class IO_functions {
         System.out.print("Enter file path: ");
 
         String path = scanner.nextLine();
-        if (path == "") {
+        if (path.isEmpty()) {
             path = defaultValue;
         }
         System.out.println("file '" + path + "' selected");
@@ -52,9 +52,9 @@ public class IO_functions {
         List<Node> cleanList;
         cleanList = new ArrayList<>();
         for (Node node : nodes) {
-            Boolean isDouplicate = false;
+            boolean isDouplicate = false;
             for (Node usedNode : cleanList) {
-                if (usedNode.getValue() == node.getValue()) {
+                if (usedNode.value() == node.value()) {
                     isDouplicate = true;
                     break;
                 }

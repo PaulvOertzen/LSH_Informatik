@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         IO_functions iof = new IO_functions();
         Graph graph = new Graph();
-        iof.setFilePath(iof.getFilePath("InformatikWettbewerb/Aufgabe2/files/schwierigkeiten0.txt"));
+        iof.setFilePath(iof.getFilePath("Aufgabe2/files/schwierigkeiten0.txt"));
         iof.readFile();
         // Create the graph and nodes by content from file
         List fileContent = iof.getContent();

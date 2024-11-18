@@ -5,6 +5,8 @@ run the "Aufgabe2.jar" or self-compile and execute the files in source
 ```
 ## Usage
 when prompted, input the path to a file or press enter and use a default path defined in the program
+## The examples
+the examples are provided in the files folder, but the program should be able to handle any file which follows the form of the examples.
 # How it works
 ## In human language
 - The program reads the given file

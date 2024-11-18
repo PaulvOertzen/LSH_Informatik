@@ -3,19 +3,17 @@ import java.util.ArrayList;
 
 //Control class with all Data
 public class Control {
-    public int distances[][]; //Data given by Reader Class
     private List<Point> dataPoints = null; //Point List later used by TourGen and its tools
     private Reader reader = null; //Instance of Reader Class
     private TourGen tourgen = null;
+    public int distances[][]; //Data given by Reader Class
     public double tours[]; //Finished Tours given by Tourgen
     private List<int[]> foundParticipants = null;
-    private int countParticipants; // = foundParticipants.length()
-
+    
     //Constructer Creates new Instance of Reader Class
     public Control() {
         this.dataPoints = new ArrayList<>();
         this.foundParticipants = new ArrayList<>();
-        this.countParticipants = 0;
     }
 
     //Runs test of Reader Class
@@ -80,6 +78,7 @@ public class Control {
             int dataset = participant[1];
             System.out.println("Tour mit " + this.tours[tour] + "m liegt im Bereich von " + this.distances[dataset][0] + "m bis " + this.distances[dataset][1] + "m.");
         }
+        //Print count of participants
         System.out.println("Insgesamt Teilnehmer: " + foundParticipants.size() + " von " + distances.length);
         System.out.println("Done Showing Data.");
     }

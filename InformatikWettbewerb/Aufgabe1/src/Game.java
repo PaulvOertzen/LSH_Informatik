@@ -1,31 +1,50 @@
 public class Game extends Control {
-    private static int hops(int startLocation, int hopDistance) {
+    Game()  {}
 
+    public int movePlayer(int startLocation)  {
+        char currentPositionChar = getChar(startLocation); // gets char at start location
+        int jumpWidth = getJump(currentPositionChar);  // gets respective jump distance to respective char
+        return hops(startLocation, jumpWidth);
     }
 
-    private static char getChar(int location) {
-        character = text.charAt(location);
-        return character;
+    private char getChar(int location) {
+        char characterAtPosition;
+        characterAtPosition = textString.charAt(location);
+        characterAtPosition = Character.toLowerCase(characterAtPosition);
+        return characterAtPosition;
     }
 
-    //getJump*F* because of Function so it does not use a constructor name
-    public int getJumpF(char character) {
-        //Parameter is given by getChar(), when function is called
-        //Goal: Look up what Index the character has and return
-        // check weather some character is in the hashmap
-        if (map.containsKey( char)){
-            //look up character in Hasmap and same value
-            int LengthOfJump = map.get(character);
-        } else{
-            // sets length to 0 to indicate that no character in the hashmap matches the given character
-            int LengthOfJump = 0;
+    public int getJump(char character) {
+        int LengthOfJump;
+        if (map.containsKey(character)) {
+            LengthOfJump = map.get(character);
+        } else {
+            LengthOfJump = 0;
         }
-        return LengthOfJump; //return value of HashMap
+        return LengthOfJump;
     }
 
-    public char decapitaliseChar(char character) {
+    public int hops(int startLocation, int hopDistance)  {
+        boolean reachedDestination = false;
+        int currentIndex = startLocation;
+        int hopTargetIndex = hopDistance + startLocation;
 
-        return Character.toLowerCase(character);
+        while (!reachedDestination) {
+            try {
+                currentIndex++;
+                char charAtIndex = getChar(currentIndex);
+                if (getJump(charAtIndex) == 0) {
+                    hopTargetIndex++;
+                }
+                if (currentIndex >= hopTargetIndex) {
+                    reachedDestination = true;
+                }
 
+            }catch (StringIndexOutOfBoundsException e) {
+                reachedDestination = true;
+                stringIndexOutOfBounds = true;
+            }
+        }
+        return currentIndex;
     }
 }

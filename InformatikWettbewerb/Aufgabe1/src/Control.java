@@ -1,23 +1,43 @@
-public static class Control {
-    String text;
-    int textLength;
-    private HashMap<Character, Integer> map = new HashMap<>();
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+import java.util.Scanner;
 
-    Control() {
+public class Control {
+    public static String filepath;
+    public static String textString;
+    public static boolean stringIndexOutOfBounds = false;
+    public static HashMap<Character, Integer> map = new HashMap<>();
+    public Game game;
+    public TextManipulation textManipulation;
+    int player1Position = 0;
+    int player2Position = 1;
+
+    ArrayList<Integer> positionPlayer1Array = new ArrayList<>();
+    ArrayList<Integer> positionPlayer2Array = new ArrayList<>();
+
+    public void control() {
+
+        filePath();
         fillHashMap();
+        textManipulation = new TextManipulation();
+        textManipulation.setText();
+        game = new Game();
+        gameLoop();
     }
 
-    public void export() {
-
-    } // saves 'text's string as .txt file
-
-    public boolean hasIntersection() {
+    public static String filePath() {
+        System.out.println("Please specify a filepath");
+        Scanner input = new Scanner(System.in);
+        filepath = input.next();
+        return filepath;
     }
 
-    public int findIntersection() {
-    }
+    public static void fillHashMap() {
 
-    public void fillHashMap() {
         map.put('a', 1);
         map.put('b', 2);
         map.put('c', 3);
@@ -49,17 +69,48 @@ public static class Control {
         map.put('ü', 29);
         map.put('ß', 30);
     }
-    public static void setText (String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("")); // Directory where the .txt file is stored in
-        String input;
-        String data;
-        while ((input = reader.readLine()) != null) {
-            //System.out.println(input);
-            data = data.concat(input);
+
+    public void gameLoop() {
+
+        while (!stringIndexOutOfBounds) {
+
+            player1Position = game.movePlayer(player1Position);
+            positionPlayer1Array.add(player1Position);
+
+            player2Position = game.movePlayer(player2Position);
+            positionPlayer2Array.add(player2Position);
+
+            if (stringIndexOutOfBounds)
+            {
+                intersectionCheck();
+            }
         }
-        reader.close();
-        text = data;
-        int textLength = data.length();
-        System.out.println(length);
+    }
+
+    public void intersectionCheck() {
+        int intersectionPlace;
+        myLoop:
+        for (int i = 0; i < positionPlayer1Array.size(); i++)
+        {
+            for (int j = 0; j < positionPlayer2Array.size(); j++)
+            {
+                if (Objects.equals(positionPlayer1Array.get(i), positionPlayer2Array.get(j)))
+                {
+                    try
+                    {
+                        intersectionPlace = positionPlayer1Array.get(i -1);
+                        System.out.println("Intersection found at: " + intersectionPlace + ".");
+                        textManipulation.TextOutput(intersectionPlace);
+                        break myLoop;
+                    } catch (IndexOutOfBoundsException e)
+                    {
+                        intersectionPlace = 0;
+                        textManipulation.TextOutput(intersectionPlace);
+                        System.out.println("Intersection found at: " + intersectionPlace + ".");
+                        break myLoop;
+                    }
+                }
+            }
+        }
     }
 }

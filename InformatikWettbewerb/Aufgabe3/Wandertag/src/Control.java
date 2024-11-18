@@ -62,7 +62,6 @@ public class Control {
                 } 
             }
         }
-
     }
 
     //Shows calculated Tours
